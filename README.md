@@ -8,7 +8,9 @@ Cada pasta é de um módulo
 ├───2_html
 │   ├───html1
 │   ├───html2
-│   └───html3
+│   ├───html3
+│   │   └───imgs
+│   └───html4
 └───3_css
     └───css1
    ```
