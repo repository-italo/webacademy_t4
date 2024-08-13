@@ -1,0 +1,23 @@
+body{
+    background-image: url("./imgs//monet-impressao-d.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 100vh;
+
+}
+
+
+#info{
+    border: 8px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    width: 300px;
+    position: absolute;
+    top: 10vh;
+    background-color: antiquewhite;
+    left: 10vh;
+}
+
+#info h1{
+    text-align: center;
+}
