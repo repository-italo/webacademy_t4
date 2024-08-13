@@ -1,5 +1,13 @@
-div{
+*{
+   margin: 0;
+}
+
+#box{
    border: 10px solid black;
    border-radius: 5px 25px 5px 25px;
-
+   padding: 15px;
+   width: min-content;
+   margin: 2;
+   background-color: gray;
+   box-shadow: 4px 4px 8px 4px #444444, 8px 8px 8px 4px yellow;
 }
