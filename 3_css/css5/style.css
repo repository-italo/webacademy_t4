@@ -1,0 +1,46 @@
+
+
+.container div{
+    border-radius: 13px;
+    color: white;
+    text-align: center;
+}
+
+
+.container{
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 7px;
+    grid-template-areas: 
+    "vermelho vermelho vermelho azul azul azul"
+    "verde rosa rosa rosa rosa rosa"
+    "laranja laranja laranja laranja laranja laranja"
+    ;
+}
+
+.container .vermelho{
+    background-color: red;
+    grid-area: vermelho
+}
+
+.container .azul{
+    background-color: blue;
+    grid-area: azul;
+}
+
+.container .verde{
+    background-color: greenyellow;
+    grid-area: verde;
+}
+
+.container .rosa{
+    background-color: palevioletred;
+    grid-area: rosa;
+}
+
+.container .laranja {
+    background-color: orange;
+    grid-area: laranja;
+}
