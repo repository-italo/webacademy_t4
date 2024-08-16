@@ -1,7 +1,7 @@
 
 
 .container div{
-    border-radius: 13px;
+    border-radius: 10px;
     color: white;
     text-align: center;
 }
@@ -12,7 +12,7 @@
     min-height: 100vh;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 1fr 1fr 1fr;
-    gap: 7px;
+    gap: 5px;
     grid-template-areas: 
     "vermelho vermelho vermelho azul azul azul"
     "verde rosa rosa rosa rosa rosa"
