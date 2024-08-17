@@ -72,32 +72,32 @@ main {
   padding: 0.5em 1em;
   color: #fff;
 }
-@media (min-width: 1100px) {
+@media (min-width: 1200px) {
    main {
-      display: flex;
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
       padding: 0.5em;
    }
    header{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      grid-template-rows: 2fr;
+      align-items: baseline;
    }
    header nav ul{
-      display: flex;
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: 5em 5em 5em;
+      grid-template-rows: 5em;
    }
    header a{
       border: none;
    }
 
-   aside{
-      margin: 30px;
-      width: 30em;
-   }
+
    .cards{
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 0.5fr 0.5fr 0.5fr;
+      grid-template-rows: 0.5fr 0.5fr;
       margin: 30px;
    }
    .cards .inner {
