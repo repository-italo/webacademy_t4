@@ -23,5 +23,9 @@ Cada pasta é de um módulo
     │   └───css_selectors
     ├───css3
     │   └───imgs
-    └───css4
+    ├───css4
+    ├───css5
+    └───css6
+        ├───.vscode
+        └───css
    ```
