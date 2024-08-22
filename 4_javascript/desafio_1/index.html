@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokempot usando Javascript</title>
+</head>
+<body>
+    <h1>Vamos jogar jokenpô</h1>
+</body>
+<script>
+    function qualJogada (jogada){
+        if (jogada == 1){
+            return "Papel";
+        }else if (jogada == 2){
+            return "Pedra";
+        }else if (jogada == 3){
+            return "Tesoura";
+        }
+    };
+    function gerarNumero(){
+        
+    };
+    console.log("Escolha sua jogada");
+    console.log("1 - Papel");
+    console.log("2 - Pedra");
+    console.log("3 - Tesoura");
+    alert("Vamos jogar jokenpô")
+    const respostaComputador = Math.floor(Math.random() * 3) + 1;    
+    const respostaUsuario = parseInt(prompt());
+    const usuarioVenceu = true && (respostaUsuario == 3 && respostaComputador == 1 ) 
+    || (respostaUsuario == 1 && respostaComputador == 2 ) || (respostaUsuario == 2 && respostaComputador == 3);
+
+    if (usuarioVenceu){
+        console.log(`Voce ganhou jogando ${qualJogada(respostaUsuario)}`)
+    }else{
+        console.log(`O computador venceu jogando ${qualJogada(respostaComputador)}`)
+    }
+</script>
+</html>
