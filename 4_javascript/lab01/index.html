@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gerador de Histórias Bobas</title>
+</head>
+<style>
+     body {
+        font-family: helvetica, sans-serif;
+        width: 350px;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      div {
+        padding-bottom: 20px;
+      }
+
+      input[type="text"] {
+        padding: 5px;
+        width: 150px;
+      }
+
+      p {
+        background: #ffc125;
+        color: #5e2612;
+        padding: 10px;
+        visibility: hidden;
+      }
+</style>
+<body>
+   <h1>Gerador de Histórias Bobas</h1>
+   <label for="nome">Nome</label>
+   <input id="nome" type="text"/>
+   <div class="historia"><p id="texto"></p></div>
+   <button class="gerarHistoria">Gerar História</button>
+</body>
+<script src="main.js"></script>
+</html>

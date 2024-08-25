@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Questão 3 - Lista 1 de Introdução ao DOM</title>
+</head>
+<body>
+   
+      <h1>Várias listas</h1>
+    
+      <p id="lista-titulo" name="lista">Lista de itens:</p>
+    
+      <ul class="lista-itens-1">
+        <li id="one" class="hot">item a</li>
+        <li id="two" class="hot">item b</li>
+        <li id="three" class="hot">item c</li>
+        <li id="four">item d</li>
+      </ul>
+    
+      <ul class="lista-itens-2">
+        <li id="one" class="hot">item a</li>
+        <li id="two" class="hot">item b</li>
+        <li id="three" class="hot">item c</li>
+        <li id="four">item d</li>
+      </ul>
+    
+      <ul class="lista-itens-3">
+        <li id="one" class="hot">item a</li>
+        <li id="two" class="hot">item b</li>
+        <li id="three" class="hot">item c</li>
+        <li id="four">item d</li>
+      </ul>
+    
+      <ul class="lista-itens-4">
+        <li id="one" class="hot">item a</li>
+        <li id="two" class="hot">item b</li>
+        <li id="three" class="hot">item c</li>
+        <li id="four">item d</li>
+      </ul>
+    
+</body>
+<script>
+   var elementosListaItens2 = document.querySelectorAll(".lista-itens-2 li");
+   var elementosListaItens2ClassHot = document.querySelectorAll(".lista-itens-2 li.hot");
+   elementosListaItens2ClassHot.style.setProperty("background-color", "blue");
+   console.log("Itens na Lista 2");
+   
+   for(element of elementosListaItens2){
+      console.log(element);
+   }
+
+   console.log("Itens na Lista 2 com a classe hot");
+   for(element of elementosListaItens2ClassHot){
+      console.log(element);
+   }
+</script>
+</html>
