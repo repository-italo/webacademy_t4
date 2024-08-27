@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Questão 4 - Lista 1 de Introdução ao DOM</title>
+</head>
+<style>
+   h1 {
+     width: 350px;
+     padding: 20px;
+     background-color: lightblue;
+   }
+   .lista {
+     border: 1px solid lightcoral;
+   }
+ </style>
+ 
+ <body>
+   <h1>Questao 04</h1>
+ 
+   <h3 id="lista-titulo">Lista de itens:</h3>
+ 
+   <ul id="lista-itens">
+     <li id="one" class="hot">item a</li>
+     <li id="two" class="hot">item b</li>
+     <li id="three" class="hot">item c</li>
+     <li id="four">item d</li>
+   </ul>
+ </body>
+<script>
+   var h1 = document.querySelector("h1");
+   var h3 = document.querySelector("h3");
+   h3.classList.add("lista");
+   h1.style.backgroundColor = "purple";
+   var elementosListaItensClasseHot = document.querySelectorAll("#lista-itens li.hot");
+   for (let e of elementosListaItensClasseHot){
+      e.style.fontWeight = "bold";
+   }
+</script>
+</html>

@@ -43,15 +43,15 @@
 <script>
    var elementosListaItens2 = document.querySelectorAll(".lista-itens-2 li");
    var elementosListaItens2ClassHot = document.querySelectorAll(".lista-itens-2 li.hot");
-   elementosListaItens2ClassHot.style.setProperty("background-color", "blue");
+   
    console.log("Itens na Lista 2");
    
-   for(element of elementosListaItens2){
+   for(let element of elementosListaItens2){
       console.log(element);
    }
-
    console.log("Itens na Lista 2 com a classe hot");
-   for(element of elementosListaItens2ClassHot){
+
+   for(let element of elementosListaItens2ClassHot){
       console.log(element);
    }
 </script>
