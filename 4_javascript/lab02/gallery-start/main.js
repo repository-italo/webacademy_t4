@@ -44,7 +44,7 @@ for (let img of imgs) {
 
 
 /* Wiring up the Darken/Lighten button */
-overlay.style.backgroundColor = "rgba(0, 0, 0, 0)"
+overlay.style.backgroundColor = "rgba(0, 0, 0, 0)";
 btn.addEventListener("click", () =>{
       if (overlay.style.backgroundColor == "rgba(0, 0, 0, 0)"){
             overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
