@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Questão 5 - Lista 2 de Introdução ao DOM</title>
+</head>
+<body>
+   <h1>To-do</h1>
+ 
+   <div>
+     <p id="lista-titulo" name="lista">Lista de atividades:</p>
+   </div>
+ 
+   <div>
+     <input placeholder="Digite aqui o item" />
+     <button id="adiciona">Adicionar</button>
+   </div>
+ 
+   <ul id="lista-itens">
+     <li>item a</li>
+   </ul>
+ 
+   <div>
+     <button id="remove">Remover último item</button>
+   </div>
+ </body>
+ <script>
+   var adicionaButton = document.querySelector("button#adiciona");
+   var elementosLista = document.querySelector("ul#lista-itens");
+   var input = document.querySelector("input");
+
+   adicionaButton.addEventListener("click", () => {
+      if(input.value != ""){
+         var novoLi = document.createElement("li");
+         novoLi.innerText = input.value;
+         elementosLista.appendChild(novoLi);
+      }
+   });
+
+   var removeUltimoItem = document.querySelector("button#remove");
+   removeUltimoItem.addEventListener("click", () => {
+      if(elementosLista.childElementCount > 0){
+         elementosLista.removeChild(elementosLista.lastElementChild);
+      }
+   })
+ </script>
+</html>

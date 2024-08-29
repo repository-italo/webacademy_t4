@@ -39,31 +39,54 @@ Bola.prototype.draw = function() {
    ctx.fill();
 }
 
-Bola.prototype.update = function()  {
-   /**Evita que a bola saia da Canvas */
-   if(this.x + this.tam >= width){
-      this.velX = -this.velX;
-   }
-   if(this.x - this.tam <= 0){
-      this.velX = -this.velX;
-   }
 
-   if(this.y + this.tam >= height){
-      this.velY = -this.velY;
+Bola.prototype.update = function () {
+   if (this.x + this.tam >= width) {
+     this.velX = -this.velX;
    }
-
-   if (this.y - this.tam <= 0){
-      this.velY = -this.velY;
+ 
+   if (this.x - this.tam <= 0) {
+     this.velX = -this.velX;
    }
-   /**Muda a posição de acordo com a velocidade */
+ 
+   if (this.y + this.tam >= height) {
+     this.velY = -this.velY;
+   }
+ 
+   if (this.y - this.tam <= 0) {
+     this.velY = -this.velY;
+   }
+ 
    this.x += this.velX;
    this.y += this.velY;
+ };
 
+
+let balls = [];
+
+while (balls.length < 150) {
+  let tamBolas = gerarRandom(10, 20);
+  let ball = new Bola(
+    gerarRandom(0 + tamBolas, width - tamBolas),
+    gerarRandom(0 + tamBolas, height - tamBolas),
+    gerarRandom(-3, 10),
+    gerarRandom(-3, 10),
+    `rgb(${gerarRandom(0, 255)}, ${gerarRandom(0, 255)}, ${gerarRandom(0, 255)})`,
+    tamBolas,
+  );
+  balls.push(ball);
 }
 
-let testBall = new Bola(50, 100, 4, 4, "blue", 10);
-testBall.x;
-testBall.tam;
-testBall.cor;
-testBall.draw();
-testBall.update();
+function loop() {
+   ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+   ctx.fillRect(0, 0, width, height);
+ 
+   for (let i = 0; i < balls.length; i++) {
+     balls[i].draw();
+     balls[i].update();
+   }
+ 
+   requestAnimationFrame(loop);
+ }
+
+ loop();
