@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Questão 5 - Lista 2 de Introdução ao DOM</title>
+</head>
+<body>
+   <h1>Várias listas</h1>
+ 
+   <div>
+     <p id="lista-titulo" name="lista">Lista de itens:</p>
+   </div>
+ 
+   <ul id="lista-itens-1">
+     <li id="one" class="hot">item a</li>
+     <li id="two" class="hot">item b</li>
+     <li id="three" class="hot">item c</li>
+     <li id="four">item d</li>
+   </ul>
+ </body>
+ <script>
+   var lista1 = document.querySelector("#lista-itens-1");
+   var first_child = lista1.firstElementChild;
+   var last_child = lista1.lastElementChild;
+   console.log(first_child);
+   console.log(last_child);
+   console.log(lista1.parentElement);
+   console.log(lista1.children);
+   var two = document.querySelector('#two');
+   console.log(two.nextElementSibling);
+   console.log(two.previousElementSibling);   
+ </script>
+</html>
