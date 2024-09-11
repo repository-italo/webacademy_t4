@@ -1,11 +1,14 @@
 const fs = require('fs');
-require('dotenv').config();
+const dotenv = require('dotenv')
+const utils = require('./utils/utils.js');
+const http = require("http");
 
+dotenv.config({path: `.env.${process.env.NODE_ENV}`});
 const PORT = process.env.PORT ?? 3333;
 
 var arquivos = [];
 process.argv.forEach((val, index) => {
-    if(index > 1){
+    if(val.includes("./")){
         fs.readdir(val, (err, files) => {
             if(err){
                 console.log(err)
@@ -17,14 +20,11 @@ process.argv.forEach((val, index) => {
     }
 })
 
-const http = require('http')
+
 
 const server = http.createServer((req, res) => {
     res.writeHead(200, {"Content-Type" : "text/html; charset=utf-8" })
-    arquivos.forEach((e) => {
-        res.write(e);
-        res.write('<br>');
-    })
+    arquivos.forEach(e => res.write(utils.createLink(e)))
     res.end();
 })
 
