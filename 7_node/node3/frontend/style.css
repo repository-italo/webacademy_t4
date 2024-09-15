@@ -1,0 +1,25 @@
+
+
+.main-content{
+   display: flex;
+   flex-direction: row;
+   gap: 15px;
+   align-items: center;
+}
+input{
+   padding: 7px 10px;
+}
+button{
+   border: 1px solid black;
+   border-radius: 12px;
+   background-color: rgb(225, 224, 224);
+   padding: 5px 10px;
+   font-size: 18px;
+   color: black;
+   cursor: pointer;
+}
+
+p{
+   text-align: justify;
+   text-justify: inter-word;
+}
