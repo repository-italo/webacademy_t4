@@ -5,7 +5,7 @@ var regex = /^[1-9]([0-9]*)$/
 const isNumber = (string) => regex.test(string)
 
 const getRandomNumber = (min, max) => {
-   return (Math.random() * (max - min) + min)
+   return Math.floor((Math.random() * (max - min) + min))
 }
 
 const generateParagraph = (min, max) => {

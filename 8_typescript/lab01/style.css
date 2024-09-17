@@ -1,0 +1,62 @@
+body{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+.container-form{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+form{
+   position: relative;
+   top: 20px;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: 20px;
+   background-color: bisque;
+   padding: 20px 15px;
+   border: 1px solid bisque;
+   border-radius: 13px;
+}
+.form-group label{
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   display: flex;
+   align-items: center;
+}
+.form-group input{
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   padding: 10px 25px 10px 10px;
+   width: 26em;
+}
+button{
+padding: 15px 20px;
+background-color: blue;
+color: white;
+border-radius: 13px;
+align-self: center;
+border: none;
+}
+
+.tarefaDiv{
+   border: 1px solid black;
+   border-radius: 12px;
+   padding: 5px;
+   max-width: 20em;
+}
+.tarefaDiv h3{
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.tarefaDiv h5{
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.tarefaDiv p {
+   text-align: justify;
+   background-color: bisque;
+}
+
+h2#part-2-titulo{
+text-align: start;
+}
