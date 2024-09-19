@@ -1,17 +1,10 @@
-var tarefasUsuario = [];
-function listTarefas(tarefa) {
+var tarefas = [];
+function tarefaComponent(tarefa) {
+    // renderizar uma tarefa no html
     var element = document.createElement("div");
-    element.classList.add("tarefaDiv");
-    var titulo = document.createElement("h3");
-    titulo.innerText = tarefa.titulo;
-    var data = document.createElement("h5");
-    data.innerText = tarefa.dataHora.toISOString();
-    var descricao = document.createElement("p");
-    descricao.innerText = tarefa.descricao;
-    element.appendChild(titulo);
-    element.appendChild(document.createElement("hr"));
-    element.appendChild(data);
-    element.appendChild(descricao);
+    element.classList.add("tarefa-div");
+    element.innerHTML =
+        "<h3>".concat(tarefa.titulo, "</h3>\n   <div class=\"button-group\">\n      <button class=\"delete\"></button>\n      <button class=\"edit\"></button>\n   </div>\n   <hr>\n   <h5>").concat(tarefa.dataHora.toLocaleDateString(), " - ").concat(tarefa.dataHora.toLocaleTimeString(), "</h5>\n   <p>").concat(tarefa.descricao, "</p>\n   ");
     return element;
 }
 // jeito mais simples de pegar os elementos da arvore DOM me javas... typescript
@@ -20,7 +13,7 @@ var inputDataTarefa = document.querySelector("#dataTarefa");
 var inputdescricaoTarefa = document.querySelector("#descricaoTarefa");
 var buttonForm = document.querySelector("#butao");
 var listaTarefas = document.querySelector("div.listaTarefas");
-//lamento, essa foi a melhor abordagem
+//adicionar tarefa na lista e renderizar no html
 buttonForm === null || buttonForm === void 0 ? void 0 : buttonForm.addEventListener("click", function (e) {
     e.stopPropagation();
     e.preventDefault();
@@ -32,15 +25,16 @@ buttonForm === null || buttonForm === void 0 ? void 0 : buttonForm.addEventListe
             ? new Date(inputDataTarefa.value)
             : new Date(Date.now() + (3600 * 1000 * 336));
         //se data for nulo, a data da tarefa será duas semanas depois do momento de cadastro da tarefa.
-        tarefasUsuario.push({
+        tarefas.push({
             titulo: titulo,
             dataHora: dataTarefa,
             descricao: descricao
         });
-        var tarefasDiv = tarefasUsuario.map(function (t) {
-            return listTarefas(t);
+        listaTarefas.innerHTML = "<h2 id=\"part-2-titulo\">Tarefas</h2>";
+        tarefas.forEach(function (t) {
+            var tarefaDiv = tarefaComponent(t);
+            listaTarefas === null || listaTarefas === void 0 ? void 0 : listaTarefas.appendChild(tarefaDiv);
         });
-        tarefasDiv.forEach(function (t) { return listaTarefas === null || listaTarefas === void 0 ? void 0 : listaTarefas.appendChild(t); });
     }
-    console.log(tarefasUsuario);
+    console.log(tarefas);
 });
