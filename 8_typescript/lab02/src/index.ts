@@ -143,7 +143,6 @@ const modalCampos = (e: MouseEvent) => {
    let inputIdadeAtualizar: HTMLInputElement | null = document.querySelector("#idade-update");
    let inputAlturaAtualizar: HTMLInputElement | null = document.querySelector("#altura-update");
    let inputPesoAtualizar: HTMLInputElement | null = document.querySelector("#peso-update");
-   let modal: HTMLElement | null = document.getElementById("modal-update-aluno");
    const aluno = turma.alunos.find((aluno) => `${aluno.id}` === id);
    (inputNomeAtualizar as HTMLInputElement).value = (aluno as Aluno).nomeCompleto;
    (inputAlturaAtualizar as HTMLInputElement).value = (aluno as Aluno).altura.toString();
