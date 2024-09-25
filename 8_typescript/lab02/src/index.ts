@@ -15,8 +15,12 @@ element.classList.add("card", "text-bg-light", "mb-3");
    element.style.maxWidth = "18rem";
    element.innerHTML = 
    `  <div class="card-body">
-         <p class="card-text text-center" style="font-size: 16px;">${estatistica.nome}</p>
-         <h5 class="card-text text-center" style="font-size: 32px;">${estatistica.numero}</h5>
+         <p class="card-text text-center" style="font-size: 16px;">
+            ${estatistica.nome}
+         </p>
+         <h5 class="card-text text-center" style="font-size: 32px;">
+            ${estatistica.numero}
+         </h5>
       </div>`;
    return element
 }
@@ -36,11 +40,10 @@ const atualizarCampos = (): void => {
          numero: turma.getMediaIdades(),
       }
    );
-
    let wrapper: HTMLElement | null = document.querySelector("#estatisticas-wrapper");
    (wrapper as HTMLElement).innerHTML = `<h1 class="text-md-center">Estatísticas</h1>`;
-   estatisticas.forEach((e) => {
-      wrapper?.appendChild(estatisticaContainer(e));
+   estatisticas.forEach((estatistica) => {
+      wrapper?.appendChild(estatisticaContainer(estatistica));
 
    })
 }
@@ -81,7 +84,6 @@ const inserirAluno = (e: MouseEvent) => {
    }
    atualizarCampos();
    mostrarTurma();
-   buttonAdicionar?.addEventListener("click", inserirAluno);
    const buttonDeletar = document.querySelectorAll("button.delete");
    buttonDeletar?.forEach((b) => (b as HTMLButtonElement).addEventListener("click", deletarAluno))
    const buttonEditar = document.querySelectorAll("button.edit");
