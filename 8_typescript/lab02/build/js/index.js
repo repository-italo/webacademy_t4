@@ -8,8 +8,12 @@ const estatisticaContainer = (estatistica) => {
     element.style.maxWidth = "18rem";
     element.innerHTML =
         `  <div class="card-body">
-         <p class="card-text text-center" style="font-size: 16px;">${estatistica.nome}</p>
-         <h5 class="card-text text-center" style="font-size: 32px;">${estatistica.numero}</h5>
+         <p class="card-text text-center" style="font-size: 16px;">
+            ${estatistica.nome}
+         </p>
+         <h5 class="card-text text-center" style="font-size: 32px;">
+            ${estatistica.numero}
+         </h5>
       </div>`;
     return element;
 };
@@ -17,18 +21,18 @@ const atualizarCampos = () => {
     let estatisticas = [];
     estatisticas.push({
         nome: "Média de Alturas",
-        numero: turma.getMediaAlturas(),
+        numero: turma.getMediaAlturas().toFixed(2),
     }, {
         nome: "Média de Peso dos Alunos",
-        numero: turma.getMediaPesos(),
+        numero: turma.getMediaPesos().toFixed(2),
     }, {
         nome: "Média de Idades",
-        numero: turma.getMediaIdades(),
+        numero: turma.getMediaIdades().toFixed(2),
     });
     let wrapper = document.querySelector("#estatisticas-wrapper");
     wrapper.innerHTML = `<h1 class="text-md-center">Estatísticas</h1>`;
-    estatisticas.forEach((e) => {
-        wrapper?.appendChild(estatisticaContainer(e));
+    estatisticas.forEach((estatistica) => {
+        wrapper?.appendChild(estatisticaContainer(estatistica));
     });
 };
 const inserirAluno = (e) => {
@@ -58,7 +62,6 @@ const inserirAluno = (e) => {
     }
     atualizarCampos();
     mostrarTurma();
-    buttonAdicionar?.addEventListener("click", inserirAluno);
     const buttonDeletar = document.querySelectorAll("button.delete");
     buttonDeletar?.forEach((b) => b.addEventListener("click", deletarAluno));
     const buttonEditar = document.querySelectorAll("button.edit");
@@ -83,12 +86,17 @@ const mostrarTurma = () => {
         let ul = document.querySelector(".list-group");
         ul?.appendChild(alunoContainer(aluno));
     });
+    const buttonDeletar = document.querySelectorAll("button.delete");
+    buttonDeletar?.forEach((b) => b.addEventListener("click", deletarAluno));
+    const buttonEditar = document.querySelectorAll("button.edit");
+    buttonEditar?.forEach((b) => b.addEventListener("click", modalCampos));
 };
 const deletarAluno = (e) => {
     e.preventDefault();
     e.stopPropagation();
     const id = e.target.parentElement?.getAttribute("aluno-id");
     turma.alunos = turma.alunos.filter((aluno) => `${aluno.id}` !== id);
+    console.log(turma.alunos);
     mostrarTurma();
     atualizarCampos();
 };
@@ -112,7 +120,6 @@ const modalCampos = (e) => {
     let inputIdadeAtualizar = document.querySelector("#idade-update");
     let inputAlturaAtualizar = document.querySelector("#altura-update");
     let inputPesoAtualizar = document.querySelector("#peso-update");
-    let modal = document.getElementById("modal-update-aluno");
     const aluno = turma.alunos.find((aluno) => `${aluno.id}` === id);
     inputNomeAtualizar.value = aluno.nomeCompleto;
     inputAlturaAtualizar.value = aluno.altura.toString();
@@ -128,6 +135,7 @@ const modalCampos = (e) => {
             peso: parseFloat(inputPesoAtualizar?.value),
             altura: parseFloat(inputAlturaAtualizar?.value),
         });
+        console.log(turma.alunos);
     });
 };
 const buttonAdicionar = document.querySelector("#adicionarAluno");

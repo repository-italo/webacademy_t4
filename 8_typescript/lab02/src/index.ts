@@ -2,7 +2,7 @@ import { Aluno, Turma } from "./main"
 
 interface Estatistica {
    nome: string;
-   numero: number;
+   numero: string;
 }
 
 const randomNumber = (): number => Math.floor(Math.random() * 10000) + 100;
@@ -29,15 +29,15 @@ const atualizarCampos = (): void => {
    estatisticas.push(
       {
          nome: "Média de Alturas",
-         numero: turma.getMediaAlturas(),
+         numero: turma.getMediaAlturas().toFixed(2),
       }, 
       {
          nome: "Média de Peso dos Alunos",
-         numero: turma.getMediaPesos(),
+         numero: turma.getMediaPesos().toFixed(2),
       },
       {
          nome: "Média de Idades",
-         numero: turma.getMediaIdades(),
+         numero: turma.getMediaIdades().toFixed(2),
       }
    );
    let wrapper: HTMLElement | null = document.querySelector("#estatisticas-wrapper");
@@ -110,7 +110,11 @@ const mostrarTurma = () => {
    turma.alunos.forEach((aluno) => {
       let ul = document.querySelector(".list-group");
       ul?.appendChild(alunoContainer(aluno));
-   })
+   });
+   const buttonDeletar = document.querySelectorAll("button.delete");
+   buttonDeletar?.forEach((b) => (b as HTMLButtonElement).addEventListener("click", deletarAluno))
+   const buttonEditar = document.querySelectorAll("button.edit");
+   buttonEditar?.forEach((b) => (b as HTMLButtonElement).addEventListener("click", modalCampos))
 }
 
 const deletarAluno = (e: MouseEvent) => {
@@ -118,6 +122,7 @@ const deletarAluno = (e: MouseEvent) => {
    e.stopPropagation();
    const id = (<HTMLElement> e.target).parentElement?.getAttribute("aluno-id");
    turma.alunos = turma.alunos.filter((aluno) => `${aluno.id}` !== id);
+   console.log(turma.alunos);
    mostrarTurma();
    atualizarCampos();
 }
@@ -162,6 +167,7 @@ const modalCampos = (e: MouseEvent) => {
 
          }
       );
+      console.log(turma.alunos);
    });
 }
 

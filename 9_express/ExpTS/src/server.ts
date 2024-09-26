@@ -1,8 +1,7 @@
-import express, { NextFunction } from "express"
-import { Request, Response } from "express"
+import express, { NextFunction } from "express";
+import { Request, Response } from "express";
 import { validateEnv } from "./utils/validateEnv";
-import dotenv from "dotenv"
-import morgan from "morgan";
+import dotenv from "dotenv";
 
 dotenv.config();
 validateEnv();
