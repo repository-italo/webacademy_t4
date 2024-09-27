@@ -14,7 +14,7 @@ const PORT = process.env.PORT ?? 5566
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.set("views", `${__dirname}/views`);
-
+app.use(express.urlencoded({extended: false}))
 app.use(router);
 app.use(logger("complete"));
 app.get("/about", (req: Request, res: Response) => {
