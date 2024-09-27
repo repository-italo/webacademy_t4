@@ -1,0 +1,8 @@
+{
+    "produtos": [
+        {"id": 1, "nome": "Geladeira", "preco": 600, "estoque": 400},
+        {"id": 2, "nome": "Celular", "preco": 1200, "estoque": 20},
+        {"id": 3, "nome": "TV 50'", "preco": 5000, "estoque": 300},
+        {"id": 4, "nome": "Mesa", "preco": 700, "estoque": 150}
+]
+}

@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-between">
+  <h3>Listagem de Produtos</h3>
+  <a href="produto/create"><button class="btn btn-primary">+</button></a>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Preço</th>
+      <th scope="col">Estoque</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each produtos}}
+    <tr>
+      <th scope="row">{{id}}</th>
+      <td>{{nome}}</td>
+      <td>{{preco}}</td>
+      <td>{{estoque}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

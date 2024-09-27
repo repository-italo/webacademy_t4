@@ -2,6 +2,8 @@
 import { Request, Response } from "express";
 
 
-const hello = (request: Request, response: Response) => {
-    
+const lorem = (request: Request, response: Response) => {
+    const {paragraphs} = request.query;
+
+
 }
