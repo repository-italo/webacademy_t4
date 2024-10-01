@@ -52,4 +52,21 @@ const hb3 = (request: Request, response: Response) => {
    })
 }
 
-export default {lorem, hb1, hb2, hb3}
+const hb4 = (request: Request, response: Response) => {
+   const technologies = [
+      { name: 'Express', type: 'Framework', poweredByNodejs: true },
+      { name: 'Laravel', type: 'Framework', poweredByNodejs: false },
+      { name: 'React', type: 'Library', poweredByNodejs: true },
+      { name: 'Handlebars', type: 'Engine View', poweredByNodejs: true },
+      { name: 'Django', type: 'Framework', poweredByNodejs: false },
+      { name: 'Docker', type: 'Virtualization', poweredByNodejs: false },
+      { name: 'Sequelize', type: 'ORM tool', poweredByNodejs: true },
+   ];
+
+   return response.render("hb4", {
+      layout: false,
+      technologies
+   })
+}
+
+export default {lorem, hb1, hb2, hb3, hb4}

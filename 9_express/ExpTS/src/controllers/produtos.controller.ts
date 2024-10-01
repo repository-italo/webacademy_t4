@@ -32,11 +32,18 @@ class ProdutoController {
     }
 
     public update = async (request: Request, response: Response) => {
-
+      try{
+         const {id} = request.params;
+         const produto = request.body as CreateProdutoDTO;
+         axios.put(`${process.env.DB_SERVER}/produto/${id}`, produto); 
+         return response.redirect("/produtos");
+      }catch(err){
+         return response.status(500).json(err);
+      }
     }
 
     public remove = async (request: Request, response: Response) => {
-
+      return response.status(401).json();
     }
 }
 

@@ -1,18 +1,18 @@
 <h3>Adicionar Produto</h3>
-<form action="post">
+<form action="/produto/create" method="post">
     <div class="mb-3">
     <label for="nomeProduto" class="form-label">Nome do Produto</label>
-    <input type="text" class="form-control" id="nomeProduto" placeholder="Insira o nome">
+    <input type="text" class="form-control" id="nomeProduto" name="nome" placeholder="Insira o nome">
     </div>
 
     <div class="mb-3">
     <label for="precoProduto" class="form-label">Preço do Produto</label>
-    <input type="number" class="form-control" id="precoProduto">
+    <input type="number" class="form-control" id="precoProduto" name="preco">
     </div>
 
     <div class="mb-3">
     <label for="estoqueProduto" class="form-label">Estoque do Produto</label>
-    <input type="number" class="form-control" id="estoqueProduto">
+    <input type="number" class="form-control" id="estoqueProduto" name="estoque">
     </div>
     
     <button class="btn btn-primary" type="submit">Enviar Dados</button>

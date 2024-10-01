@@ -25,6 +25,7 @@
     "@types/express-handlebars": "^6.0.0",
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.5.5",
+    "@types/node-sass-middleware": "^0.0.35",
     "eslint": "^9.11.1",
     "globals": "^15.9.0",
     "nodemon": "^3.1.7",
@@ -41,6 +42,8 @@
     "express-handlebars": "^8.0.1",
     "json-server": "^1.0.0-beta.3",
     "lorem-ipsum": "^2.0.8",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node-sass-middleware": "^1.1.0",
+    "sass": "^1.79.4"
   }
 }
