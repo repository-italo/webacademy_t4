@@ -1,9 +1,55 @@
-
+import { loremIpsum } from "lorem-ipsum";
 import { Request, Response } from "express";
 
-
 const lorem = (request: Request, response: Response) => {
-    const {paragraphs} = request.query;
-
-
+    const {paragraphs} = request.params;
+    let loremText = "";
+    if(paragraphs){
+      loremText = loremIpsum({
+         count: parseInt(paragraphs as string),                // Number of "words", "sentences", or "paragraphs"
+         format: "html",         // "plain" or "html"
+         paragraphLowerBound: 8,  // Min. number of sentences per paragraph.
+         paragraphUpperBound: 16,  // Max. number of sentences per paragarph.
+         random: Math.random,     // A PRNG function
+         sentenceLowerBound: 5,   // Min. number of words per sentence.
+         sentenceUpperBound: 15,  // Max. number of words per sentence.
+         suffix: "\n",            // Line ending, defaults to "\n" or "\r\n" (win32)
+         units: "paragraphs",      // paragraph(s), "sentence(s)", or "word(s)"
+      })
+    }
+    return response.render("lorem", {
+      layout: false,
+      loremText
+    })
 }
+
+const hb1 = (request: Request, response: Response) =>{
+   return response.render("hb1", {
+      layout: false,
+      mensagem: "Olá, você está aprendendo Express + HandleBars",
+   })
+}
+
+const hb2 = (request: Request, response: Response) => {
+   return response.render("hb2", {
+      layout: false,
+      poweredByNodeJs: true,
+      name: "Express",
+      type: "Framework",
+   })
+}
+
+const hb3 = (request: Request, response: Response) => {
+   const profs = [
+      {nome: "David Fernandes", sala: 1238},
+      {nome: "Horacio Fernandes", sala: 1233},
+      {nome: "Edleno Moura", sala: 1236},
+      {nome: "Elaine Harada", sala: 1231},
+   ]
+   return response.render("hb3", {
+      layout: false,
+      profs
+   })
+}
+
+export default {lorem, hb1, hb2, hb3}
