@@ -1,10 +1,10 @@
 {
   "produtos": [
     {
-      "id": "1",
-      "nome": "Geladeira",
-      "preco": 600,
-      "estoque": 400
+      "nome": "Celulareee",
+      "preco": "3000",
+      "estoque": "34",
+      "id": "1"
     },
     {
       "id": "2",
@@ -13,34 +13,10 @@
       "estoque": 20
     },
     {
-      "id": "3",
-      "nome": "TV 50'",
-      "preco": 5000,
-      "estoque": 300
-    },
-    {
-      "id": "4",
-      "nome": "Mesa",
-      "preco": 700,
-      "estoque": 150
-    },
-    {
-      "id": "b8f1",
-      "nome": "Produto 1",
-      "preco": "345",
-      "estoque": "23"
-    },
-    {
-      "id": "b1b9",
-      "nome": "Produto 1",
-      "preco": "789",
-      "estoque": "560"
-    },
-    {
-      "id": "3931",
-      "nome": "George",
-      "preco": "456",
-      "estoque": "10"
+      "nome": "TV um dois tres",
+      "preco": "5000",
+      "estoque": "200",
+      "id": "3"
     }
   ]
 }

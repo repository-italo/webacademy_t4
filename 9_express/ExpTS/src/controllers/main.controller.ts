@@ -25,14 +25,12 @@ const lorem = (request: Request, response: Response) => {
 
 const hb1 = (request: Request, response: Response) =>{
    return response.render("hb1", {
-      layout: false,
       mensagem: "Olá, você está aprendendo Express + HandleBars",
    })
 }
 
 const hb2 = (request: Request, response: Response) => {
    return response.render("hb2", {
-      layout: false,
       poweredByNodeJs: true,
       name: "Express",
       type: "Framework",
@@ -47,7 +45,6 @@ const hb3 = (request: Request, response: Response) => {
       {nome: "Elaine Harada", sala: 1231},
    ]
    return response.render("hb3", {
-      layout: false,
       profs
    })
 }
@@ -64,7 +61,6 @@ const hb4 = (request: Request, response: Response) => {
    ];
 
    return response.render("hb4", {
-      layout: false,
       technologies
    })
 }

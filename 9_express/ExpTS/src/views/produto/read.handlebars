@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{produto.nome}}</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">Preço: R${{produto.preco}}</h6>
+    <h6 class="card-subtitle mb-2 text-body-secondary">Estoque: {{produto.estoque}}</h6>
+    <a href="/produto/update/{{produto.id}}" class="card-link">Edite esse produto</a>
+    <a href="/produto/delete/{{produto.id}}"class="card-link">Delete-o</a>
+  </div>
+</div>

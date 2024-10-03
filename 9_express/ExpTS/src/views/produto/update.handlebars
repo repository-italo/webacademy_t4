@@ -1,0 +1,35 @@
+<h3>Editar Produto</h3>
+<form action='/produto/update/{{produto.id}}' method="POST">
+    <div class="mb-3">
+    <label for="nomeProduto" class="form-label">Nome do Produto</label>
+    <input 
+      type="text" 
+      class="form-control" 
+      id="nomeProduto" 
+      name="nome" 
+      placeholder="Insira o nome"
+      value={{produto.nome}}>
+    </div>
+
+    <div class="mb-3">
+    <label for="precoProduto" class="form-label">Preço do Produto</label>
+    <input 
+      type="number" 
+      class="form-control" 
+      id="precoProduto" 
+      name="preco"
+      value={{produto.preco}}>
+    </div>
+
+    <div class="mb-3">
+    <label for="estoqueProduto" class="form-label">Estoque do Produto</label>
+    <input 
+      type="number" 
+      class="form-control" 
+      id="estoqueProduto" 
+      name="estoque"
+      value={{produto.estoque}}>
+    </div>
+    
+    <button class="btn btn-primary" type="submit">Enviar Dados</button>
+</form>

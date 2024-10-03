@@ -7,15 +7,7 @@
 </head>
 <body>
    <div>
-      <ul>
-         {{#each technologies}}
-            {{#if poweredByNodejs}}
-               <li>
-                  {{name}}: {{type}}
-               </li>
-            {{/if}}
-         {{/each}}
-      </ul>
+         {{{listTechsPoweredByNode technologies}}}
    </div>
 </body>
 </html>
