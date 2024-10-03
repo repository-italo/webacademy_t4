@@ -23,13 +23,14 @@ app.use(sass({
    prefix: "/css",
   }));
 
-  app.use("/css", express.static(path.join(__dirname,`../public` )));
-  console.log(`${__dirname}/../public/css`);
+app.use("/css", express.static(path.join(__dirname,`../public` )));
+
 app.engine("handlebars", engine({
    // eslint-disable-next-line @typescript-eslint/no-require-imports
    helpers: require(`${__dirname}/views/helpers/helpers.ts`)
   }));
-  app.set("view engine", "handlebars");
+
+app.set("view engine", "handlebars");
 app.set("views", `${__dirname}/views`);
 
 app.use(express.urlencoded({extended: false}));
