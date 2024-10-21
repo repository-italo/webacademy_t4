@@ -33,18 +33,10 @@ CREATE TABLE `Endereco` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Categoria` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `nome` VARCHAR(256) NOT NULL,
-
-    UNIQUE INDEX `Categoria_id_key`(`id`),
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `SubCategoria` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `categoria_id` INTEGER NOT NULL,
+    `nome` VARCHAR(200) NOT NULL,
 
     UNIQUE INDEX `SubCategoria_id_categoria_id_key`(`id`, `categoria_id`),
     PRIMARY KEY (`id`)
@@ -59,8 +51,17 @@ CREATE TABLE `Fabricante` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `Categoria` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `nome` VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `Produto` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `nome` VARCHAR(256) NOT NULL,
     `sub_categoria_id` INTEGER NOT NULL,
     `preco_base` DECIMAL(10, 2) NOT NULL,
     `categoria_id` INTEGER NOT NULL,
@@ -71,11 +72,12 @@ CREATE TABLE `Produto` (
 
 -- CreateTable
 CREATE TABLE `Modelo` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `serie_modelo` VARCHAR(15) NOT NULL,
     `produto_id` INTEGER NOT NULL,
 
-    UNIQUE INDEX `Modelo_serie_modelo_produto_id_key`(`serie_modelo`, `produto_id`),
-    PRIMARY KEY (`produto_id`)
+    UNIQUE INDEX `Modelo_id_produto_id_key`(`id`, `produto_id`),
+    PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
@@ -93,10 +95,11 @@ CREATE TABLE `Compra` (
 CREATE TABLE `ItemCompra` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `compra_id` INTEGER NOT NULL,
-    `serie_modelo` VARCHAR(191) NOT NULL,
+    `modelo_id` INTEGER NOT NULL,
     `quantidade` INTEGER NOT NULL,
     `produto_id` INTEGER NOT NULL,
 
+    UNIQUE INDEX `ItemCompra_produto_id_key`(`produto_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -107,10 +110,10 @@ ALTER TABLE `Endereco` ADD CONSTRAINT `Endereco_cliente_id_fkey` FOREIGN KEY (`c
 ALTER TABLE `SubCategoria` ADD CONSTRAINT `SubCategoria_categoria_id_fkey` FOREIGN KEY (`categoria_id`) REFERENCES `Categoria`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Produto` ADD CONSTRAINT `Produto_sub_categoria_id_categoria_id_fkey` FOREIGN KEY (`sub_categoria_id`, `categoria_id`) REFERENCES `SubCategoria`(`id`, `categoria_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Produto` ADD CONSTRAINT `Produto_fabricante_id_fkey` FOREIGN KEY (`fabricante_id`) REFERENCES `Fabricante`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Produto` ADD CONSTRAINT `Produto_fabricante_id_fkey` FOREIGN KEY (`fabricante_id`) REFERENCES `Fabricante`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Produto` ADD CONSTRAINT `Produto_sub_categoria_id_categoria_id_fkey` FOREIGN KEY (`sub_categoria_id`, `categoria_id`) REFERENCES `SubCategoria`(`id`, `categoria_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Produto` ADD CONSTRAINT `Produto_categoria_id_fkey` FOREIGN KEY (`categoria_id`) REFERENCES `Categoria`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -128,7 +131,7 @@ ALTER TABLE `Compra` ADD CONSTRAINT `Compra_endereco_id_cliente_id_fkey` FOREIGN
 ALTER TABLE `ItemCompra` ADD CONSTRAINT `ItemCompra_compra_id_fkey` FOREIGN KEY (`compra_id`) REFERENCES `Compra`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `ItemCompra` ADD CONSTRAINT `ItemCompra_produto_id_fkey` FOREIGN KEY (`produto_id`) REFERENCES `Produto`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `ItemCompra` ADD CONSTRAINT `ItemCompra_modelo_id_produto_id_fkey` FOREIGN KEY (`modelo_id`, `produto_id`) REFERENCES `Modelo`(`id`, `produto_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `ItemCompra` ADD CONSTRAINT `ItemCompra_serie_modelo_produto_id_fkey` FOREIGN KEY (`serie_modelo`, `produto_id`) REFERENCES `Modelo`(`serie_modelo`, `produto_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `ItemCompra` ADD CONSTRAINT `ItemCompra_produto_id_fkey` FOREIGN KEY (`produto_id`) REFERENCES `Produto`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `compra` ADD COLUMN `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3);
+
+-- AlterTable
+ALTER TABLE `itemcompra` ADD COLUMN `preco_unitario` DECIMAL(10, 2) NOT NULL DEFAULT 0.00;
