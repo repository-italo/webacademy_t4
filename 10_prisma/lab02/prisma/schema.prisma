@@ -1,0 +1,119 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+   provider = "prisma-client-js"
+}
+
+datasource db {
+   provider = "mysql"
+   url      = env("DATABASE_URL")
+}
+
+model Cliente {
+   id              Int      @id @unique @default(autoincrement())
+   p_nome          String   @db.VarChar(100)
+   s_nome          String   @db.VarChar(200)
+   cpf             String   @unique @db.VarChar(15)
+   data_nascimento DateTime
+   email           String   @unique @db.VarChar(256)
+   num_celular     String   @unique @db.VarChar(13)
+
+   enderecos Endereco[]
+
+   compras Compra[]
+}
+
+model Endereco {
+   id          Int     @unique @default(autoincrement())
+   cliente     Cliente @relation(fields: [cliente_id], references: [id])
+   cliente_id  Int
+   endereco    String  @db.VarChar(256)
+   cep         String  @db.VarChar(9)
+   rua         String  @db.VarChar(200)
+   numero      Int
+   complemento String  @db.VarChar(256)
+   bairro      String  @db.VarChar(100)
+   cidade      String  @db.VarChar(256)
+   estado      String  @db.VarChar(256)
+
+   compras Compra[]
+
+   @@unique([id, cliente_id])
+}
+
+model SubCategoria {
+   id           Int       @id @default(autoincrement())
+   categoria    Categoria @relation(fields: [categoria_id], references: [id])
+   categoria_id Int
+   nome         String    @db.VarChar(200)
+   produtos     Produto[]
+
+   @@unique([id, categoria_id])
+}
+
+model Fabricante {
+   id       Int       @id @default(autoincrement())
+   nome     String    @db.VarChar(255)
+   produtos Produto[]
+}
+
+model Categoria {
+   id            Int            @id @default(autoincrement())
+   nome          String         @db.VarChar(255)
+   subCategorias SubCategoria[]
+
+   produtos Produto[]
+}
+
+model Produto {
+   id               Int          @id @default(autoincrement())
+   nome             String       @db.VarChar(256)
+   sub_categoria_id Int
+   preco_base       Decimal      @db.Decimal(10, 2)
+   categoria_id     Int
+   fabricante_id    Int
+   fabricante       Fabricante   @relation(fields: [fabricante_id], references: [id])
+   subCategoria     SubCategoria @relation(fields: [sub_categoria_id, categoria_id], references: [id, categoria_id])
+   categoria        Categoria    @relation(fields: [categoria_id], references: [id])
+   modelos          Modelo[]
+   ItemCompra       ItemCompra[]
+}
+
+model Modelo {
+   id           Int          @id @default(autoincrement())
+   serie_modelo String       @db.VarChar(15)
+   produto_id   Int
+   produto      Produto      @relation(fields: [produto_id], references: [id])
+   itensCompra  ItemCompra[]
+
+   @@unique([id, produto_id])
+}
+
+model Compra {
+   id          Int          @id @default(autoincrement())
+   cliente_id  Int
+   cliente     Cliente      @relation(fields: [cliente_id], references: [id])
+   endereco_id Int
+   endereco    Endereco     @relation(fields: [endereco_id, cliente_id], references: [id, cliente_id])
+   desconto    Decimal      @db.Decimal(10, 2)
+   preco_final Decimal      @db.Decimal(10, 2)
+   itensCompra ItemCompra[]
+   createdAt   DateTime     @default(now())
+   updatedAt   DateTime     @default(now()) @updatedAt
+}
+
+model ItemCompra {
+   id             Int     @id @default(autoincrement())
+   compra_id      Int
+   compra         Compra  @relation(fields: [compra_id], references: [id], onDelete: Cascade)
+   modelo_id      Int
+   quantidade     Int
+   produto_id     Int     @unique
+   modelo         Modelo  @relation(fields: [modelo_id, produto_id], references: [id, produto_id])
+   produto        Produto @relation(fields: [produto_id], references: [id])
+   preco_unitario Decimal @default(0.00) @db.Decimal(10, 2)
+}
