@@ -1,0 +1,49 @@
+services:
+  backend:
+    container_name: backend
+    build: ./backend
+    ports:
+      -4444:4444
+  
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    ports:
+      -8000:80
+  
+  database:
+    container_name: database
+    image: mysql:latest
+    ports:
+      -3306:3306
+    volumes:
+      -db_volume:var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass2024
+      - MYSQL_DATABASE=
+    networks:
+      - mysql-phpmyadmin
+
+  
+  db_admin_container:
+    container_name: db_admin_container
+    depends_on:
+      - database
+    image: phpmyadmin:latest
+    environment:
+      - PMA_PASSWORD=pass2024
+      - PMA_HOST=database
+      - PMA_PORT:3306
+      - PMA_USER=root 
+    networks:
+      - mysql-phpmyadmin
+  
+  networks:
+    mysql-phpmyadmin:
+  
+  volumes:
+    db_volume:
+
+  
+
+  

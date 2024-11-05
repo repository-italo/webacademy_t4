@@ -1,0 +1,16 @@
+#### Comando de Build da Imagem BackEnd
+docker build . -t imagem-back
+
+#### Comando de Build da Imagem FrontEnd
+docker build . -t imagem-front
+
+#### Comando de Criação da Network entre Containeres
+docker network create app-connection
+
+### Criação do Container BackEnd
+docker run -d --name back --network app-connection -p 4000:4000 imagem-back
+
+### Criação do Container FrontEnd
+docker run -d --name frontend --network app-connection -p 3000:3000 imagem-front
+
+
