@@ -1,11 +1,17 @@
-export const ItemCarrinho = ({item}) => {
+
+
+interface ItemCarrinhoProps {
+   produto: Produto;
+}
+
+export const ItemCarrinho = (props: ItemCarrinhoProps) => {
    return (
-      <tr key="1">
-         <td>{item.nome}</td>
-         <td>R$ {item.preco}</td>
+      <tr key={props.produto.id}>
+         <td>{props.produto.nome}</td>
+         <td>R$ {props.produto.preco}</td>
          <td>2</td>
 
-         <td>R$ {}</td>
+         <td>R$ {props.produto.preco}</td>
          <td>
             <button className="btn btn-danger btn-sm">
                Remover
