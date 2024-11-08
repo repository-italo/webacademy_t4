@@ -1,0 +1,74 @@
+version: '3.9'
+
+services:
+  backend:
+    container_name: backend
+    depends_on:
+      - database
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 4444:4444
+    networks:
+      - backend_database
+      - frontend_backend
+  
+  frontend:
+    container_name: frontend
+    depends_on:
+      - backend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 8000:80
+    networks:
+      - frontend_backend
+    
+  
+  database:
+    container_name: database
+    image: mysql:latest
+    ports:
+      - 3307:3306
+    volumes:
+      - ./bd/script.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - db_volume:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass2024
+      - MYSQL_DATABASE=livraria
+    networks:
+      - mysql-phpmyadmin
+      - backend_database
+
+  
+  db_admin_container:
+    container_name: db_admin_container
+    depends_on:
+      - database
+    ports:
+      - 8080:80
+    image: phpmyadmin:latest
+    environment:
+      - PMA_PASSWORD=pass2024
+      - PMA_HOST=database
+      - PMA_PORT=3306
+      - PMA_USER=root
+    networks:
+      - mysql-phpmyadmin
+  
+networks:
+    mysql-phpmyadmin:
+      driver: bridge
+    backend_database:
+      driver: bridge
+    frontend_backend:
+      driver: bridge
+  
+volumes:
+    db_volume:
+
+  
+
+  

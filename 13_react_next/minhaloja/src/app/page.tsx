@@ -21,8 +21,17 @@ export default function Produtos(){
   return (
     <>
       <main>
-          <ResumoCarrinho quantidadeTotal={quantidadeItens} valorTotal={valorCompra} />
-          <ListagemProdutos adicionarProduto={adicionarProdutoCarrinho} produtos={produtosMock} />
+
+          <ResumoCarrinho 
+          quantidadeTotal={quantidadeItens} 
+          valorTotal={valorCompra} 
+          />
+          
+          <ListagemProdutos 
+          adicionarProduto={adicionarProdutoCarrinho} 
+          produtos={produtosMock} 
+          />
+
       </main>
     </>
   );
