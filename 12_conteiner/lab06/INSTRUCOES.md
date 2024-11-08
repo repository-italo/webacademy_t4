@@ -10,4 +10,4 @@ docker compose up --build
 
 - Confira o PHPMyAdmin no link: [http://localhost:8080](http://localhost:8080).
 
-- OBS: Eu não consegui expor o container database na porta 330 pois eu já tinha mysql instalado e não queria interromper esse serviço. Agradeço a compreensão.
+- OBS: Eu não consegui expor o container database na porta 3306 pois eu já tinha mysql instalado e não queria interromper esse serviço. Agradeço a compreensão.
