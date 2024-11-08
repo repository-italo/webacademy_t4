@@ -1,5 +1,5 @@
 # Instruções para Executar a aplicação
-- [Link do Repositório (Diretório Raiz)](https://github.com/repository-italo/webacademy_t4/tree/main/12_conteiner/lab06): 
+- [Link do Repositório (Diretório Raiz);](https://github.com/repository-italo/webacademy_t4/tree/main/12_conteiner/lab06)
 - Rode o docker compose do diretório raiz:
 ```
 docker compose up --build
