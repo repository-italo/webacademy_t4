@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { NavBar } from "./components";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { BootstrapClient } from "./components/BootstrapClient";
+import { ReactQueryClientProvider } from "./components/ReactQueryClient";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,10 +29,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <NavBar />
-        <div className="container p-5">  
-          {children}
-        </div>
+         <ReactQueryClientProvider>
+         <NavBar />
+         <div className="container p-5">  
+           {children}
+         </div>
+        <BootstrapClient />
+        </ReactQueryClientProvider>
       </body>
     </html>
   );

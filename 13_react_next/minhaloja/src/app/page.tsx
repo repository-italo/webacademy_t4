@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import React, { useState } from "react";
 import { ListagemProdutos, ResumoCarrinho } from "./components";
 import { produtosMock } from "./mocks/produtos";
@@ -14,9 +13,7 @@ export default function Produtos(){
     setValorCompra((valor) => valor + produto.preco);
   }
 
-  const removerProdutoCarrinho = (produto: Produto) => {
-    setQuantidadeItens((quantidadeItens) => quantidadeItens - 1);
-  }
+
 
   return (
     <>
