@@ -13,6 +13,8 @@ services:
     networks:
       - backend_database
       - frontend_backend
+    volumes:
+      - backend_volume_logs:/app/logs
   
   frontend:
     container_name: frontend
@@ -68,6 +70,8 @@ networks:
   
 volumes:
     db_volume:
+    backend_volume_logs:
+
 
   
 
