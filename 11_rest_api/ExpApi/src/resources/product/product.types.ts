@@ -1,7 +1,10 @@
+import { Decimal } from "@prisma/client/runtime/library";
 interface ProductDTO {
-    id: number;
-    nome: string;
-    preco: number;
+    id: string;
+    name: string;
+    price: number;
+    stockQuantity:number
 }
 
-export {ProductDTO}
+type CreateProductDTO = Pick<ProductDTO, "name" | "price" | "stockQuantity">
+export {ProductDTO, CreateProductDTO}
