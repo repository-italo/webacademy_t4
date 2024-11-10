@@ -1,7 +1,8 @@
 import { ItemCarrinho } from "../ItemCarrinho/itemcarrinho"
 
 interface ListagemCarrinhoProps {
-  produtos: Array<Produto>;
+  itens: Array<ItemCarrinho>;
+  removerItemCarrinho: (item:ItemCarrinho) => void;
 }
 
 
@@ -25,8 +26,13 @@ export const ListagemCarrinho = (props: ListagemCarrinhoProps) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {props.produtos.map((produto: Produto) => {
-                      return <ItemCarrinho produto={produto}/>
+                    {
+                        props.itens.map((item) => {
+                           return <ItemCarrinho 
+                                       removerItemCarrinho={props.removerItemCarrinho} 
+                                       itemCarrinho={item} 
+                                       key={item.id} 
+                                       />
                     })}
                   </tbody>
                 </table>

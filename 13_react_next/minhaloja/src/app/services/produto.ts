@@ -1,8 +1,15 @@
-import api from "./api";
+import {api} from "./api";
 
 
-const getListaProdutos = async (): Promise<Produto[]> => {
-   return api.get<Produto[]>("/produto").then((response) => response.data)
+async function getListaProdutos(): Promise<Produto[]> {
+   const response = await api.get<Produto[]>("/produto");
+   return response.data;
 }
 
-export {getListaProdutos};
+async function getProdutoById(id: string): Promise<Produto>{
+   const response = await api.get<Produto>(`/produto/${id}`);
+   return response.data;
+}
+
+
+export {getListaProdutos, getProdutoById};

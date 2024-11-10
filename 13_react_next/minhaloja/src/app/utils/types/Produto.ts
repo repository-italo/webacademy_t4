@@ -1,6 +1,12 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Produto {
-    id: number;
+    id: string;
     nome: string;
-    preco: number;
+    preco: number | string;
     quantidade: number;
+    descricao: string;
+    vendido: boolean;
+    usuario_id: string;
+    fotos: Array<Foto>;
+
 }

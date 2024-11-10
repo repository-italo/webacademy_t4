@@ -1,20 +1,30 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ListagemCarrinho, ResumoCarrinho } from "../components";
-import { produtosMock } from "../mocks/produtos";
+import { mockItensCarrinho } from "@/mocks/itensCarrinho";
+import { calculoQuantidadeTotal, calculoValorTotal } from "../utils/helpers/carrinhoHelpers";
+
 export default function Carrinho() {
+   const [itensCarrinho, setItensCarrinho] = useState<ItemCarrinho[]>(mockItensCarrinho);
+   const [valorCompra, setValorCompra] = useState<number>(0);
+   const [quantidadeItens, setQuantidadeItens] = useState<number>(0);
 
+   useEffect(() => {
+      setQuantidadeItens(calculoQuantidadeTotal(itensCarrinho));
+      setValorCompra(calculoValorTotal(itensCarrinho));
+   }, [itensCarrinho]);
 
-  const valorTotalProduto = (
-    precoUnitario: number,
-    quantidade: number
-  ): number => precoUnitario * quantidade;
+   const removerItemCarrinho = (item: ItemCarrinho) => {
+      setItensCarrinho((itens) => {
+         return itens.filter(i => i.id != item.id);
+      });
+   }
 
   return (
     <>
       <main>
-        <ListagemCarrinho produtos={produtosMock} />
-        <ResumoCarrinho quantidadeTotal={10} valorTotal={1500.00}  />
+        <ResumoCarrinho quantidadeTotal={quantidadeItens} valorTotal={valorCompra}  />
+        <ListagemCarrinho removerItemCarrinho={removerItemCarrinho} itens={itensCarrinho} />
       </main>
     </>
   );

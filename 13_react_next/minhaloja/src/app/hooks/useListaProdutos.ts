@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getListaProdutos } from "../services/produto";
+import {getListaProdutos}  from "../services/produto";
 
 
 const useListaProdutos = () => {
@@ -7,7 +7,6 @@ const useListaProdutos = () => {
       queryKey: ["listaProdutos"],
       queryFn: () => getListaProdutos(),
    })
-
    return {produtos:data, isPending, isError};
 }
 

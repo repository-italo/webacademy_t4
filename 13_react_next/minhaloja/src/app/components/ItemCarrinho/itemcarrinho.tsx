@@ -1,19 +1,23 @@
 
 
 interface ItemCarrinhoProps {
-   produto: Produto;
+   itemCarrinho: ItemCarrinho;
+   removerItemCarrinho: (item: ItemCarrinho) => void;
 }
 
 export const ItemCarrinho = (props: ItemCarrinhoProps) => {
    return (
-      <tr key={props.produto.id}>
-         <td>{props.produto.nome}</td>
-         <td>R$ {props.produto.preco}</td>
-         <td>2</td>
+      <tr key={props.itemCarrinho.id}>
+         <td>{props.itemCarrinho.nome}</td>
+         <td>R$ {props.itemCarrinho.preco}</td>
+         <td>{props.itemCarrinho.quantidade}</td>
 
-         <td>R$ {props.produto.preco}</td>
+         <td>R$ {props.itemCarrinho.preco}</td>
          <td>
-            <button className="btn btn-danger btn-sm">
+            <button 
+            className="btn btn-danger btn-sm"
+            onClick={() => props.removerItemCarrinho(props.itemCarrinho)}
+            >
                Remover
             </button>
          </td>

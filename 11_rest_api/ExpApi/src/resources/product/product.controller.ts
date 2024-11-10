@@ -26,11 +26,9 @@ const create = async (request: Request, response: Response) => {
 };
 
 const read = async (request: Request, response: Response) => {
-
     const {id} = request.params;
     try{
       const product = await readProductById(id);
-
       if(!product){
          response.status(StatusCodes.NOT_FOUND).send(ReasonPhrases.NOT_FOUND);
          return;
@@ -73,7 +71,7 @@ const remove = async (request: Request, response: Response) => {
    try {
       const [rowsAffected, err] = await removeProduct(id);
       if(rowsAffected == 0){
-         response.status(StatusCodes.NOT_IMPLEMENTED).send(err);
+         response.status(StatusCodes.BAD_REQUEST).send(err);
          return;
       }
        response.status(StatusCodes.NO_CONTENT).send(ReasonPhrases.NO_CONTENT);

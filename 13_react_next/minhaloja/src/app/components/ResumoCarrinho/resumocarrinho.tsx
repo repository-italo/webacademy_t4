@@ -1,7 +1,7 @@
 
 interface ResumoCarrinhoProps {
   valorTotal: number;
-  quantidadeTotal: number
+  quantidadeTotal: number;
 }
 
 export const ResumoCarrinho = (props: ResumoCarrinhoProps) => {

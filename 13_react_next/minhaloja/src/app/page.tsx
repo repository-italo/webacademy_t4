@@ -1,18 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import { ListagemProdutos, ResumoCarrinho } from "./components";
-import { produtosMock } from "./mocks/produtos";
 
 
 export default function Produtos(){
+
   const [valorCompra, setValorCompra] = useState<number>(0);
   const [quantidadeItens, setQuantidadeItens] = useState<number>(0);
-
   const adicionarProdutoCarrinho = (produto: Produto) => {
-    setQuantidadeItens((quantidade) => quantidade + 1);
-    setValorCompra((valor) => valor + produto.preco);
+      setQuantidadeItens((quantidade) => quantidade + 1);
+      setValorCompra((valor) => valor + parseFloat(produto.preco as string));
   }
-
 
 
   return (
@@ -26,7 +24,6 @@ export default function Produtos(){
           
           <ListagemProdutos 
           adicionarProduto={adicionarProdutoCarrinho} 
-          produtos={produtosMock} 
           />
 
       </main>

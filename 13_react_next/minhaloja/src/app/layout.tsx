@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { NavBar } from "./components";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BootstrapClient } from "./components/BootstrapClient";
+import "react-toastify/dist/ReactToastify.css";
 import { ReactQueryClientProvider } from "./components/ReactQueryClient";
 
 const geistSans = localFont({
@@ -34,7 +35,7 @@ export default function RootLayout({
          <div className="container p-5">  
            {children}
          </div>
-        <BootstrapClient />
+         <BootstrapClient />
         </ReactQueryClientProvider>
       </body>
     </html>

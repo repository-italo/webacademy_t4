@@ -5,9 +5,10 @@ const prismaClient = new PrismaClient();
 async function main (){
    return await prismaClient.userType.createMany({
       data:[
-         {id: UserTypes.admin, label: "admin"},
-         {id: UserTypes.client, label: "client"}
-      ]
+         {id: UserTypes.ADMIN, label: "admin"},
+         {id: UserTypes.CLIENT, label: "client"}
+      ],
+      skipDuplicates: true
    })
 }
 

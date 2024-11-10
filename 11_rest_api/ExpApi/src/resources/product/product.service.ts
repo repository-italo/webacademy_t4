@@ -31,6 +31,6 @@ export async function removeProduct (id: string): Promise<[number, err: any]>{
       await prismaClient.product.delete({where: {id}});
       return [1, null];
    }catch(err){
-      return [0, err];
+      throw err;
    }
 }

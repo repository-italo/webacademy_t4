@@ -11,9 +11,9 @@ export const CardProduto = (props: CardProdutoProps) => {
       <div className="col">
       <div className="card shadow-sm h-100">
         <Image
-          src="/placeholder.png"
+          src={props.produto.fotos[0].src}
           className="card-img-top"
-          alt="imagem placeholder"
+          alt={props.produto.fotos[0].titulo}
           width={300}
           height={320}
         />
