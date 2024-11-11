@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { ListagemCarrinho, ResumoCarrinho } from "../components";
-import { mockItensCarrinho } from "@/mocks/itensCarrinho";
+import { mockItensCarrinho } from "@/app/mocks/itensCarrinho";
 import { calculoQuantidadeTotal, calculoValorTotal } from "../utils/helpers/carrinhoHelpers";
 
 export default function Carrinho() {

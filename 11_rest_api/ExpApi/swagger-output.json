@@ -1,0 +1,688 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Api da Loja Virtual WebAcademy",
+    "description": "Documentação da API",
+    "version": "1.0.0"
+  },
+  "host": "http://localhost:7777",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/v1/products/": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Lista de Produtos.",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Lista de produtos",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Adiciona um Produto na base.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateProductDTO"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Product"
+            },
+            "description": "Created"
+          },
+          "403": {
+            "in": "body",
+            "text": "FORBIDDEN",
+            "description": "Forbidden"
+          },
+          "409": {
+            "in": "body",
+            "text": "CONFLICT",
+            "description": "Conflict"
+          },
+          "422": {
+            "in": "body",
+            "text": "UNPROCESSABLE ENTITY",
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/v1/products/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Recupera Dados sobre um Produto Específico.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do produto"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Product"
+            },
+            "description": "OK"
+          },
+          "404": {
+            "in": "body",
+            "text": "NOT FOUND",
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Atualiza um Produto registrado.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id do Produto."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateProductDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Product"
+            },
+            "description": "OK"
+          },
+          "403": {
+            "in": "body",
+            "text": "FORBIDDEN",
+            "description": "Forbidden"
+          },
+          "404": {
+            "in": "body",
+            "text": "NOT FOUND",
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Deleta um Produto da base.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id do Produto."
+          }
+        ],
+        "responses": {
+          "204": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "No Content"
+          },
+          "400": {
+            "in": "body",
+            "text": "BAD REQUEST",
+            "description": "Bad Request"
+          },
+          "403": {
+            "in": "body",
+            "text": "FORBIDDEN",
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/users/": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Listagem de Usuários.",
+        "description": "",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Users"
+            },
+            "description": "OK"
+          },
+          "403": {
+            "in": "body",
+            "text": "FORBIDDEN",
+            "description": "Forbidden"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Adiciona Usuário a Base.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateUserDTO"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "description": "Created"
+          },
+          "409": {
+            "in": "body",
+            "text": "CONFLICT",
+            "description": "Conflict"
+          },
+          "422": {
+            "in": "body",
+            "text": "UNPROCESSABLE ENTITY",
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/v1/users/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Recupera Dados de um usuário específico.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id do usuário",
+            "example": "10f30194-e960-4efb-9d4a-f9336f8992b9"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "description": "OK"
+          },
+          "404": {
+            "in": "body",
+            "text": "NOT FOUND",
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Recupera Dados de um usuário específico.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id do usuário.",
+            "example": "10f30194-e960-4efb-9d4a-f9336f8992b9"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateUserDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "description": "OK"
+          },
+          "403": {
+            "in": "body",
+            "text": "FORBIDDEN",
+            "description": "Forbidden"
+          },
+          "404": {
+            "in": "body",
+            "text": "NOT FOUND",
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Remove Usuário da Base de Dados.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "descrition": "Id do Usuário",
+            "example": "10f30194-e960-4efb-9d4a-f9336f8992b9"
+          }
+        ],
+        "responses": {
+          "204": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "No Content"
+          },
+          "400": {
+            "in": "body",
+            "text": "BAD REQUEST",
+            "description": "Bad Request"
+          },
+          "403": {
+            "in": "body",
+            "text": "FORBIDDEN",
+            "description": "Forbidden"
+          },
+          "404": {
+            "in": "body",
+            "text": "NOT FOUND",
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/languages": {
+      "post": {
+        "tags": [
+          "Language"
+        ],
+        "summary": "Inserir Cookie de Idioma.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "in": {
+                  "example": "any"
+                },
+                "schema": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/signup": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Cadastro de Usuário Cliente.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/SignUpDTO"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/v1/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login de Usuários.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/LoginDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "in": "body",
+            "text": "OK",
+            "description": "OK"
+          },
+          "401": {
+            "in": "body",
+            "text": "UNAUTHORIZED",
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/v1/logout": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Logout de Usuário Logado.",
+        "description": "",
+        "responses": {
+          "200": {
+            "in": "body",
+            "text": "OK",
+            "description": "OK"
+          },
+          "401": {
+            "in": "body",
+            "text": "UNAUTHORIZED",
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateProductDTO": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Martelo"
+        },
+        "price": {
+          "type": "number",
+          "example": 70
+        },
+        "stockQuantity": {
+          "type": "number",
+          "example": 50
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "0faa000a-3dca-41ae-aa2e-58fcf1ac260e"
+        },
+        "name": {
+          "type": "string",
+          "example": "Martelo"
+        },
+        "price": {
+          "type": "number",
+          "example": 70
+        },
+        "stockQuantity": {
+          "type": "number",
+          "example": 50
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2024-11-10T03:51:29.633Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2024-11-10T03:51:29.633Z"
+        }
+      }
+    },
+    "Products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "2ccc222c-5fff-63ce-cc4f-70f0g3ce480g"
+          },
+          "name": {
+            "type": "string",
+            "example": "Ergonomic Wooden Desk"
+          },
+          "price": {
+            "type": "number",
+            "example": 899
+          },
+          "stockQuantity": {
+            "type": "number",
+            "example": 10
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2024-11-10T05:00:00.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2024-11-10T05:00:00.000Z"
+          }
+        }
+      }
+    },
+    "CreateUserDTO": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "Thora"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Prosacco"
+        },
+        "email": {
+          "type": "string",
+          "example": "Eddie_Koch30@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "gW2tFtX3_yxFIDr"
+        },
+        "userTypeId": {
+          "type": "string",
+          "example": "d12f4fa0-f970-442b-9430-7818b8d91808"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "10f30194-e960-4efb-9d4a-f9336f8992b9"
+        },
+        "firstName": {
+          "type": "string",
+          "example": "Thora"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Prosacco"
+        },
+        "email": {
+          "type": "string",
+          "example": "Eddie_Koch30@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "gW2tFtX3_yxFIDr"
+        },
+        "userTypeId": {
+          "type": "string",
+          "example": "d12f4fa0-f970-442b-9430-7818b8d91808"
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2024-11-10T15:31:54.842Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2024-11-10T15:31:54.842Z"
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "802bc4be-7aa5-4823-9678-31effeda075b"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Keenanzee"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Herzog"
+          },
+          "email": {
+            "type": "string",
+            "example": "Russtat16@hotmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "yzffGuBSDT8_JvO"
+          },
+          "userTypeId": {
+            "type": "string",
+            "example": "d12f4fa0-f970-442b-9430-7818b8d91808"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2024-11-10T04:17:41.329Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2024-11-10T04:19:23.993Z"
+          }
+        }
+      }
+    },
+    "SignUpDTO": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "Thora"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Prosacco"
+        },
+        "email": {
+          "type": "string",
+          "example": "Eddie_Koch30@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "gW2tFtX3_yxFIDr"
+        }
+      }
+    },
+    "LoginDTO": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "Felix_Stracke@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "123456"
+        }
+      }
+    },
+    "ChangeLanguageDTO": {
+      "type": "object",
+      "properties": {
+        "lang": {
+          "type": "string",
+          "example": "pt-BR"
+        }
+      }
+    }
+  }
+}

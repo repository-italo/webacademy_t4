@@ -12,7 +12,32 @@ import {
 import {StatusCodes, ReasonPhrases} from "http-status-codes";
 
 const create = async (request: Request, response: Response) => {
-    try{
+   /*
+   #swagger.summary = 'Adiciona um Produto na base.'
+   #swagger.parameters['body'] = {
+      in: 'body',
+      schema: { $ref: '#/definitions/CreateProductDTO'}
+   }
+   #swagger.responses[201] = {
+      schema: {$ref: '#/definitions/Product'
+      }
+   }
+   #swagger.responses[409] = {
+      in: 'body',
+      text: 'CONFLICT'
+   }
+   #swagger.responses[403] = {
+      in: 'body',
+      text: 'FORBIDDEN'
+   }
+   #swagger.responses[422] = {
+      in: 'body',
+      text: 'UNPROCESSABLE ENTITY'
+   }
+   
+   
+   */ 
+   try{
       const product: CreateProductDTO = request.body;
       if (await alreadyExists(product.name)){
          response.status(StatusCodes.CONFLICT).send(ReasonPhrases.CONFLICT);
@@ -26,7 +51,19 @@ const create = async (request: Request, response: Response) => {
 };
 
 const read = async (request: Request, response: Response) => {
-    const {id} = request.params;
+   /*
+   #swagger.summary = 'Recupera Dados sobre um Produto Específico.'
+   #swagger.parameters['id'] = {description: 'ID do produto'}
+   #swagger.responses[200] = {
+      schema: {$ref: '#/definitions/Product'}
+   }
+   #swagger.responses[404] = {
+      in: 'body',
+      text: 'NOT FOUND'
+   }
+   */ 
+   
+   const {id} = request.params;
     try{
       const product = await readProductById(id);
       if(!product){
@@ -41,6 +78,26 @@ const read = async (request: Request, response: Response) => {
 };
 
 const update = async (request: Request, response: Response) => {
+   /*
+   #swagger.summary = 'Atualiza um Produto registrado.'
+   #swagger.parameters['id'] = {description: 'Id do Produto.'}
+   #swagger.parameters['body'] = {
+      in: 'body',
+      schema: { $ref: '#/definitions/CreateProductDTO'}
+   }
+   #swagger.responses[200] = {
+      schema: { $ref: '#/definitions/Product'}
+   }
+   #swagger.responses[404] = {
+      in: 'body',
+      text: 'NOT FOUND'
+   }
+   #swagger.responses[403] = {
+      in: 'body',
+      text: 'FORBIDDEN'
+   }
+   */
+   
    const {id} = request.params;
    const product = request.body as CreateProductDTO;
    try{
@@ -57,6 +114,17 @@ const update = async (request: Request, response: Response) => {
 };
 
 const index = async (request: Request, response: Response) => {
+/*
+   #swagger.summary = 'Lista de Produtos.'
+   #swagger.responses[200] = {
+     description: 'Lista de produtos',
+         schema: {
+           $ref: '#/definitions/Products'}
+         }
+       
+
+ */
+   
    try{
       const products: Product[] = await getAllProducts();
       response.status(StatusCodes.OK).json(products);
@@ -67,11 +135,26 @@ const index = async (request: Request, response: Response) => {
 };
 
 const remove = async (request: Request, response: Response) => {
+   /**
+   #swagger.summary = 'Deleta um Produto da base.'
+   #swagger.parameters['id'] = { description: 'Id do Produto.' }
+   #swagger.responses[204] = {
+       schema: {  }
+   }
+   #swagger.responses[400] = {
+      in: 'body',
+      text: 'BAD REQUEST'
+   }
+   #swagger.responses[403] = {
+      in: 'body',
+      text: 'FORBIDDEN'
+   }
+ */
    const {id} = request.params;
    try {
       const [rowsAffected, err] = await removeProduct(id);
       if(rowsAffected == 0){
-         response.status(StatusCodes.BAD_REQUEST).send(err);
+         response.status(StatusCodes.BAD_REQUEST).send(ReasonPhrases.BAD_REQUEST);
          return;
       }
        response.status(StatusCodes.NO_CONTENT).send(ReasonPhrases.NO_CONTENT);

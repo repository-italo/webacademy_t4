@@ -3,6 +3,7 @@ import userController from "./user.controller";
 import validate from "../../middlewares/validate";
 import userMiddleware from "./user.middleware.ts";
 import userSchema from "./user.schema.ts";
+import { isAdmin } from "../../middlewares/isAdmin.ts";
 const router = Router();
 
 
@@ -19,6 +20,6 @@ router.put(
    validate(userSchema), 
    userMiddleware.emailAlreadyExists,  
    userController.update);
-router.delete("/:id", userController.remove);
+router.delete("/:id", isAdmin, userController.remove);
 
 export default router;
