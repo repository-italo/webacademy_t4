@@ -1,10 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import { ListagemProdutos, ResumoCarrinho } from "./components";
-
+import { mockProdutos } from "./mocks/produtos";
 
 export default function Produtos(){
-
   const [valorCompra, setValorCompra] = useState<number>(0);
   const [quantidadeItens, setQuantidadeItens] = useState<number>(0);
   const adicionarProdutoCarrinho = (produto: Produto) => {
@@ -24,6 +23,7 @@ export default function Produtos(){
           
           <ListagemProdutos 
           adicionarProduto={adicionarProdutoCarrinho} 
+          produtos={mockProdutos}
           />
 
       </main>
