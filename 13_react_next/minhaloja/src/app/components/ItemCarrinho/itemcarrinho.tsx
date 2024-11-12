@@ -2,7 +2,7 @@
 
 interface ItemCarrinhoProps {
    itemCarrinho: ItemCarrinho;
-   removerItemCarrinho: (item: ItemCarrinho) => void;
+   removerItemCarrinho: (id: string) => void;
 }
 
 export const ItemCarrinho = (props: ItemCarrinhoProps) => {
@@ -16,7 +16,7 @@ export const ItemCarrinho = (props: ItemCarrinhoProps) => {
          <td>
             <button 
             className="btn btn-danger btn-sm"
-            onClick={() => props.removerItemCarrinho(props.itemCarrinho)}
+            onClick={() => props.removerItemCarrinho(props.itemCarrinho.id)}
             >
                Remover
             </button>

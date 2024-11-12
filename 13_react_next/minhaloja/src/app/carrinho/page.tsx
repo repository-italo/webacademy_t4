@@ -14,9 +14,9 @@ export default function Carrinho() {
       setValorCompra(calculoValorTotal(itensCarrinho));
    }, [itensCarrinho]);
 
-   const removerItemCarrinho = (item: ItemCarrinho) => {
+   const removerItemCarrinho = (id: string) => {
       setItensCarrinho((itens) => {
-         return itens.filter(i => i.id != item.id);
+         return itens.filter(i => i.id != id);
       });
    }
 

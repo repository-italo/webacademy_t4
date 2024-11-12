@@ -2,7 +2,7 @@ import { ItemCarrinho } from "../ItemCarrinho/itemcarrinho"
 
 interface ListagemCarrinhoProps {
   itens: Array<ItemCarrinho>;
-  removerItemCarrinho: (item:ItemCarrinho) => void;
+  removerItemCarrinho: (id: string) => void;
 }
 
 
