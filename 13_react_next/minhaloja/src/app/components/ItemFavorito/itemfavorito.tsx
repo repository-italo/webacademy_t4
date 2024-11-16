@@ -25,7 +25,7 @@ export const ItemFavorito = ({favorito, refetchFavoritos}: ItemFavoritoProps) =>
             className="btn btn-danger btn-sm"
             onClick={() => removeFavorito(favorito.id)}
             >  
-               {isPending ? "Removendo" : "Remover"}
+               {isPending ? "Removendo..." : "Remover"}
             </button>
          </td>
       </tr>

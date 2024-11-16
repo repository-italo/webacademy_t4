@@ -1,3 +1,4 @@
+"use client";
 import { useListaProdutos } from "@/app/hooks/useListaProdutos";
 import { CardProduto } from "../CardProduto/cardproduto"
 import { Produto } from "@/app/utils/types/Produto";

@@ -21,8 +21,8 @@ export default function ListFavoritos (){
                     </tr>
                   </thead>
                   <tbody>
-                     {isPendingFetching && <p>Carregando...</p>}
-                     {isError && <p>Algo deu errado.</p>} 
+                     {isPendingFetching && <td>Carregando...</td>}
+                     {isError && <td>Algo deu errado.</td>} 
                      {favoritos && favoritos.map((favorito) => {
                         return <ItemFavorito
                                  key={favorito.id}

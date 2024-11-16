@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { NavBar } from "./components";
@@ -28,11 +29,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+   
   return (
     <html lang="pt-br">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
          <ReactQueryClientProvider>
-            <NavBar />
+             <NavBar />
             <div className="container p-5">  
                {children}
             </div>

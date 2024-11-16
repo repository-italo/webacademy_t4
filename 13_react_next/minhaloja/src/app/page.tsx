@@ -12,8 +12,6 @@ export default function Produtos(){
       setQuantidadeItens((quantidade) => quantidade + 1);
       setValorCompra((valor) => valor + parseFloat(produto.preco as string));
   }
-
-
   return (
     <>
       <main>
