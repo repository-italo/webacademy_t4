@@ -1,5 +1,6 @@
 import { useListaProdutos } from "@/app/hooks/useListaProdutos";
 import { CardProduto } from "../CardProduto/cardproduto"
+import { Produto } from "@/app/utils/types/Produto";
 interface ListagemProdutosProps {
     adicionarProduto: (produtos: Produto) => void;
 }

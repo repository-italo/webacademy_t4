@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { ListagemProdutos, ResumoCarrinho } from "./components";
+import { Produto } from "./utils/types/Produto";
 
 
 export default function Produtos(){
