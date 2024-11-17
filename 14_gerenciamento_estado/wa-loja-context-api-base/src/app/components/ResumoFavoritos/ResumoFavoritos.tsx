@@ -1,16 +1,13 @@
+import { useFavoritos } from "@/app/provider/FavoritosProvider";
 import CardProduto from "../CardProduto/CardProduto";
 
 interface ResumoCarrinhoProps {
-  favoritos: Produto[];
-  setFavoritos: React.Dispatch<React.SetStateAction<Produto[]>>;
 }
 
 export default function ResumoFavoritos({
-  favoritos,
-  setFavoritos,
 }: ResumoCarrinhoProps) {
+   const {favoritos} = useFavoritos();
   const ultimosFavoritos = favoritos.slice(-3).reverse();
-
   return (
     <>
       <h5 className="mb-3 mt-4 mt-lg-0 ms-1">Últimos favoritados:</h5>
@@ -25,8 +22,6 @@ export default function ResumoFavoritos({
             <CardProduto
               key={produto.id}
               produto={produto}
-              favoritos={favoritos}
-              setFavoritos={setFavoritos}
               mostrarImagem={false}
               mostrarBotao={false}
             />

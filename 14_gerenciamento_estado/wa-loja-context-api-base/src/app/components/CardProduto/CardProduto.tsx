@@ -1,26 +1,21 @@
 import { calculaValorComPorcentagemDeDesconto } from "@/app/helpers";
+import { useFavoritos } from "@/app/provider/FavoritosProvider";
 import Image from "next/image";
 
 interface CardProdutoProps {
   produto: Produto;
-  favoritos: Produto[];
-  setFavoritos: React.Dispatch<React.SetStateAction<Produto[]>>;
   mostrarImagem?: boolean;
   mostrarBotao?: boolean;
 }
 
 export default function CardProduto({
   produto,
-  favoritos,
-  setFavoritos,
   mostrarImagem = true,
   mostrarBotao = true,
 }: CardProdutoProps) {
-  const adicionarAosFavoritos = (produto: Produto) => {
-    setFavoritos((favoritos) => [...favoritos, produto]);
-  };
-
-  const ehFavorito = favoritos.some((item) => item.id === produto.id);
+  
+  const {verificarSeFavorito, adicionarAosFavoritos} = useFavoritos()
+  const ehFavorito = verificarSeFavorito(produto.id);
 
   return (
     <div className="col">

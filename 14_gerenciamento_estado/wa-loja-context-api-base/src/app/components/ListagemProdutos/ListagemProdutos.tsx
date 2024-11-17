@@ -1,16 +1,13 @@
+import { useFavoritos } from "@/app/provider/FavoritosProvider";
 import CardProduto from "../CardProduto/CardProduto";
 import ResumoFavoritos from "../ResumoFavoritos/ResumoFavoritos";
 
 interface IListagemProdutos {
   produtos: Produto[];
-  favoritos: Produto[];
-  setFavoritos: React.Dispatch<React.SetStateAction<Produto[]>>;
 }
 
 export default function ListagemProdutos({
   produtos,
-  favoritos,
-  setFavoritos,
 }: IListagemProdutos) {
   return (
     <div className="row row-cols-1 row-cols-lg-2">
@@ -22,15 +19,13 @@ export default function ListagemProdutos({
             <CardProduto
               key={produto.id}
               produto={produto}
-              setFavoritos={setFavoritos}
-              favoritos={favoritos}
             />
           ))}
         </div>
       </div>
 
       <div className="col-lg-3">
-        <ResumoFavoritos favoritos={favoritos} setFavoritos={setFavoritos} />
+        <ResumoFavoritos />
       </div>
     </div>
   );
