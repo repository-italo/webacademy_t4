@@ -1,4 +1,3 @@
-import { useFavoritos } from "@/app/provider/FavoritosProvider";
 import CardProduto from "../CardProduto/CardProduto";
 import ResumoFavoritos from "../ResumoFavoritos/ResumoFavoritos";
 

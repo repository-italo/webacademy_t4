@@ -1,4 +1,4 @@
-import { useFavoritos } from "@/app/provider/FavoritosProvider";
+import { useFavoritosContext } from "@/app/provider/FavoritosProvider";
 import CardProduto from "../CardProduto/CardProduto";
 
 interface ResumoCarrinhoProps {
@@ -6,7 +6,7 @@ interface ResumoCarrinhoProps {
 
 export default function ResumoFavoritos({
 }: ResumoCarrinhoProps) {
-   const {favoritos} = useFavoritos();
+   const {favoritos} = useFavoritosContext();
   const ultimosFavoritos = favoritos.slice(-3).reverse();
   return (
     <>

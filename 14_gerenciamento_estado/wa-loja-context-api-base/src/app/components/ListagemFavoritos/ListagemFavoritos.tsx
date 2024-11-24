@@ -1,10 +1,10 @@
 import ItemFavorito from "../ItemFavorito/ItemFavorito";
-import { useFavoritos } from "@/app/provider/FavoritosProvider";
+import { useFavoritosContext } from "@/app/provider/FavoritosProvider";
 
 
 
 export default function ListagemFavoritos() {
-  const {favoritos, valorTotalFavoritos} = useFavoritos();
+  const {favoritos, valorTotalFavoritos} = useFavoritosContext();
    const valorTotal = valorTotalFavoritos();
   return (
     <div className="card mb-4">

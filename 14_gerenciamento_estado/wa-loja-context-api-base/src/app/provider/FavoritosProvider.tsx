@@ -71,7 +71,7 @@ export const FavoritosProvider = (
    )
 }
 
-export const useFavoritos = () => {
+export const useFavoritosContext = () => {
    const context = useContext(FavoritosContext);
    return context;
 }

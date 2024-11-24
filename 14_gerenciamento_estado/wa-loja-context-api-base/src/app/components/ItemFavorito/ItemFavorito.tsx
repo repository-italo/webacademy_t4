@@ -1,5 +1,5 @@
 import { calculaValorComPorcentagemDeDesconto } from "@/app/helpers";
-import { useFavoritos } from "@/app/provider/FavoritosProvider";
+import { useFavoritosContext } from "@/app/provider/FavoritosProvider";
 import Image from "next/image";
 
 interface IItemFavoritoProps {
@@ -9,7 +9,7 @@ interface IItemFavoritoProps {
 export default function ItemFavorito({
   itemFavorito,
 }: IItemFavoritoProps) {
-  const {removerDosFavoritos} = useFavoritos();
+  const {removerDosFavoritos} = useFavoritosContext();
 
   return (
     <tr key={itemFavorito.id}>
