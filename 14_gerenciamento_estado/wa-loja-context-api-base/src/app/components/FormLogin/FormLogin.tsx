@@ -1,8 +1,9 @@
 "use client";
 
+import { useAuthContext } from "@/app/provider/AuthProvider";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
-
+import { useRouter } from "next/navigation";
 type Inputs = {
   email: string;
   senha: string;
@@ -14,8 +15,12 @@ export default function FormLogin() {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => {};
+  const {login} = useAuthContext();
+  const navigate = useRouter();
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    login(data.email);
+    navigate.push("/");
+  };
 
   return (
     <div className="col-12 col-md-8 d-flex justify-content-center align-items-center">
@@ -55,7 +60,9 @@ export default function FormLogin() {
         </div>
 
         <div className="d-grid col-12">
-          <button type="submit" className="btn btn-success">
+          <button 
+          type="submit" className="btn btn-success"
+          >
             Entrar
           </button>
         </div>

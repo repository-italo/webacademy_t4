@@ -1,8 +1,9 @@
-import { createContext, useContext } from "react"
+"use client";
+import { createContext, useContext, useEffect, useState } from "react"
 
 interface IAuthContext {
-    email: string | null;
-    login: () => void;
+    emailUser: string | null;
+    login: (email: string) => void;
     logout: () => void;
 }
 
@@ -11,21 +12,35 @@ interface IAuthProvider {
 }
 
 const AuthContext = createContext<IAuthContext>({
-    email: null,
+    emailUser: null,
     login: () => {},
     logout: () => {}
 });
 
 
 export const AuthProvider = ({children}: IAuthProvider) => {
-    const email = "testej@gmail.com";
-    const login = () => {
+    
+    const [emailUser, setEmailUser] = useState<string | null>(null);
+    useEffect(() => {
+        const email = localStorage.getItem("user");
+        if(email){
+            setEmailUser(email);
+        }
+    }, []);
 
+    const login = (email: string) => {
+        setEmailUser(email);
+        localStorage.setItem("user", email);
     };
     const logout = () => {
-
+        const user = localStorage.getItem("user");
+        if(user){
+            localStorage.removeItem("user");
+            setEmailUser(null);
+        }
     };
-    const value = {email, login, logout};
+
+    const value = {emailUser, login, logout};
     return (
         <AuthContext.Provider value={value}>
             {children}

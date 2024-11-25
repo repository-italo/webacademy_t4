@@ -9,7 +9,7 @@ interface IItemFavoritoProps {
 export default function ItemFavorito({
   itemFavorito,
 }: IItemFavoritoProps) {
-  const {removerDosFavoritos} = useFavoritosContext();
+  const {removerDosFavoritos, isRemoveFavoritoPending} = useFavoritosContext();
 
   return (
     <tr key={itemFavorito.id}>
@@ -41,8 +41,9 @@ export default function ItemFavorito({
         <button
           onClick={() => removerDosFavoritos(itemFavorito.id)}
           className="btn btn-outline-danger btn-sm"
+          disabled={isRemoveFavoritoPending}
         >
-          Remover
+          {isRemoveFavoritoPending ? "Removendo" : "Remover"}
         </button>
       </td>
     </tr>

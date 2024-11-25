@@ -1,8 +1,10 @@
 "use client";
 
+import { useAuthContext } from "@/app/provider/AuthProvider";
 import Link from "next/link";
 
 export default function Navbar() {
+  const {logout, emailUser} = useAuthContext();
   return (
     <nav className="navbar navbar-expand-md bg-light border-bottom border-body sticky-top">
       <div className="container-fluid">
@@ -33,9 +35,13 @@ export default function Navbar() {
               </Link>
             </li>
           </ul>
-
-          <Link className="nav-link " href="/login">
-            <button type="button" className="btn btn-secondary">
+            {emailUser}
+          <Link className="nav-link mx-2" href="/login">
+            <button 
+            type="button" 
+            className="btn btn-secondary"
+            onClick={() => logout()}
+            >
               Sair
             </button>
           </Link>

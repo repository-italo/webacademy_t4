@@ -1,14 +1,21 @@
 "use client";
-import { createContext, SetStateAction, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect} from "react";
 import { calculaValorComPorcentagemDeDesconto } from "../helpers";
+import useFavoritos from "../hooks/useFavoritos";
+import { useAddFavorito } from "../hooks/useAddFavorito";
+import { toast } from "react-toastify";
+import useRemoveFavorito from "../hooks/useRemoveFavorito";
 
 interface IFavoritosContext{
    favoritos: Produto[] | [];
-   setFavoritos: React.Dispatch<SetStateAction<Produto[]>>;
    verificarSeFavorito: (id: string) => boolean;
-   adicionarAosFavoritos: (produto: Produto) => void;
-   removerDosFavoritos: (id: string) => void;
    valorTotalFavoritos: () => number;
+   isAddFavoritoPending: boolean;
+   isRemoveFavoritoPending: boolean;
+   isGetFavoritosPending: boolean
+   adicionarAosFavoritos: (favorito: Produto) => void;
+   removerDosFavoritos: (id: string) => void;
+   isFavoritosError: boolean;
 }
 
 interface IFavoritosProvider{
@@ -17,40 +24,52 @@ interface IFavoritosProvider{
 
 const FavoritosContext = createContext<IFavoritosContext>({
    favoritos: [],
-   setFavoritos: () => {},
    verificarSeFavorito: () => false,
-   adicionarAosFavoritos: () => {},
-   removerDosFavoritos: () => {},
    valorTotalFavoritos: () => 0,
+   isAddFavoritoPending: false,
+   isRemoveFavoritoPending: false,
+   isGetFavoritosPending: false,
+   isFavoritosError: false,
+   adicionarAosFavoritos: () => {},
+   removerDosFavoritos: () => {}
 })
 
 export const FavoritosProvider = (
    {children}: IFavoritosProvider
 ) => {
-   const [favoritos, setFavoritos] = useState<Produto[]>([]);
-   useEffect(() => {
-      const favoritosLocalStorage = localStorage.getItem("favoritos");
+   const {favoritos, isGetFavoritosPending, refetchFavoritos, isFavoritosError} = useFavoritos();
 
-      if(favoritosLocalStorage){
-         setFavoritos(JSON.parse(favoritosLocalStorage));
+   const {addFavorito, isAddFavoritoPending} = useAddFavorito(
+      () => {
+         refetchFavoritos();
+         toast.success("Adição de Favorito concluída com sucesso.");
+      },
+      () =>  {
+         toast.error("Algo deu errado!");
       }
-   }, [])
-   const verificarSeFavorito = (id: string) => {
-      return favoritos.some((item) => item.id === id);
-   };
+   );
 
-   const adicionarAosFavoritos = (produto: Produto) => {
-      const novosFavoritos = [...favoritos, produto];
-      setFavoritos(novosFavoritos);
-      localStorage.setItem("favoritos", JSON.stringify(novosFavoritos));
-   };
-   const removerDosFavoritos = (id: string) => {
-      const novosFavoritos = favoritos.filter((item) => item.id != id);
-      setFavoritos(novosFavoritos);
-      localStorage.setItem("favoritos", JSON.stringify(novosFavoritos));
+   const adicionarAosFavoritos = (favorito: Produto) => {
+      addFavorito(favorito);
    }
+   const removerDosFavoritos = (id: string) => {
+      removeFavorito(id);
+   }
+
+   const {removeFavorito, isRemoveFavoritoPending} = useRemoveFavorito(
+      () => {
+         refetchFavoritos();
+         toast.success("Remoção de Favorito Concluída com sucesso");
+      },
+      () => {
+         toast.error("Algo deu errado!");
+      }
+   );
+   const verificarSeFavorito = (id: string) => {
+      return (favoritos as Produto[]).some((item) => item.id === id);
+   };
    const valorTotalFavoritos = () => {
-      const total = favoritos.reduce((total, item) => {
+      const total = favoritos!.reduce((total, item) => {
          return (total + calculaValorComPorcentagemDeDesconto(
             parseFloat(item.preco), item.desconto))
       }, 0);
@@ -58,11 +77,14 @@ export const FavoritosProvider = (
    }
    const value = {
       favoritos, 
-      setFavoritos,
       verificarSeFavorito,
+      valorTotalFavoritos,
+      isAddFavoritoPending,
+      isRemoveFavoritoPending,
+      isGetFavoritosPending,
       adicionarAosFavoritos,
       removerDosFavoritos,
-      valorTotalFavoritos
+      isFavoritosError,
    };
    return (
       <FavoritosContext.Provider value={value}>

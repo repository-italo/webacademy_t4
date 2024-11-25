@@ -4,14 +4,21 @@ import { useFavoritosContext } from "@/app/provider/FavoritosProvider";
 
 
 export default function ListagemFavoritos() {
-  const {favoritos, valorTotalFavoritos} = useFavoritosContext();
+  const {favoritos, valorTotalFavoritos, isGetFavoritosPending, isFavoritosError} = useFavoritosContext();
    const valorTotal = valorTotalFavoritos();
   return (
     <div className="card mb-4">
       <div className="row card-body">
         <h5 className="card-title mb-4 fw-bold">Lista de favoritos:</h5>
-
-        {favoritos.length > 0 ? (
+        {isGetFavoritosPending &&
+         ( <div className="spinner-border" role="status"></div>)
+        }
+        {isFavoritosError && (
+          <div><h5>Algo deu</h5></div>
+        )
+        
+        }
+        {favoritos && (
           <div className="table-responsive">
             <table className="table table-borderless">
               <thead>
@@ -32,14 +39,13 @@ export default function ListagemFavoritos() {
               </tbody>
             </table>
           </div>
-        ) : (
-          <p>Sua lista de favoritos está vazia.</p>
-        )}
+        ) }
       </div>
       <div className="card-footer d-flex flex-column">
+       {favoritos && 
         <small className="text-muted">
           Quantidade de produtos: {favoritos.length}
-        </small>
+        </small>}
 
         <small className="text-muted">
           Valor total: R$ {valorTotal.toFixed(2)}

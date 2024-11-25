@@ -14,7 +14,7 @@ export default function CardProduto({
   mostrarBotao = true,
 }: CardProdutoProps) {
   
-  const {verificarSeFavorito, adicionarAosFavoritos} = useFavoritosContext()
+  const {verificarSeFavorito, adicionarAosFavoritos, isAddFavoritoPending} = useFavoritosContext()
   const ehFavorito = verificarSeFavorito(produto.id);
 
   return (
