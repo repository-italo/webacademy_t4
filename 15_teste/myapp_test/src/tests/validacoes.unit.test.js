@@ -31,8 +31,10 @@ describe("verificarDisponibilidadeEstoque(), ", () => {
     it("deve retornar false para quantidade de estoque igual a zero.", () => {
         const result = validacoes.verificarDisponibilidadeEstoque("livro", 20);
         const otherResult = validacoes.verificarDisponibilidadeEstoque("livro", 1);
+        const otherOtherResult = validacoes.verificarDisponibilidadeEstoque("livro", 0);
         expect(result).toBeFalsy();
         expect(otherResult).toBeFalsy();
+        expect(otherOtherResult).toBeFalsy();
     });
 
     it("deve retornar true se quantidade for menor que a quantidade disponível.", () => {
