@@ -3,19 +3,19 @@ import userEvent from "@testing-library/user-event";
 import { mockProdutos } from "@/app/mocks/produtos";
 import { calculaValorComPorcentagemDeDesconto } from "@/app/helpers";
 import ItemFavorito from "../ItemFavorito";
-import { exec } from "child_process";
+
 describe("ItemFavorito", () => {
-    it("deve renderizarr corretamente as informações de favorito", () => {
+    it("deve renderizar corretamente as informações de favorito", () => {
         const favoritoMock = mockProdutos[0];
         const {nome, preco, fotos, desconto, descricao} = favoritoMock;
 
         const precoComDesconto = calculaValorComPorcentagemDeDesconto(
-            Number(favoritoMock.preco),
+            Number(preco),
             favoritoMock.desconto
         ).toFixed(2);
         render(
             <ItemFavorito itemFavorito={favoritoMock} setFavoritos={() => {}} />
-        )
+        );
 
         expect(screen.getByText(nome)).toBeInTheDocument();
         expect(screen.getByText(descricao)).toBeInTheDocument();
@@ -27,5 +27,17 @@ describe("ItemFavorito", () => {
 
     it("deve ser possível clicar no botão Remover.", async () => {
         const setFavoritos = jest.fn();
+
+        render(
+            <ItemFavorito 
+                itemFavorito={mockProdutos[0]} 
+                setFavoritos={setFavoritos} />
+        );
+
+        const botao = screen.getByRole("button", {
+            name: /Remover/i,
+        });
+        await userEvent.click(botao);
+        expect(setFavoritos).toHaveBeenCalled();
     })
 })

@@ -2,6 +2,7 @@ import { useProdutoFavorito } from "@/app/State/FavoritosProvider";
 import { calculaValorComPorcentagemDeDesconto } from "@/app/helpers";
 import Image from "next/image";
 
+
 interface CardProdutoProps {
   produto: Produto;
   setFavoritos: React.Dispatch<React.SetStateAction<Produto[]>>;
