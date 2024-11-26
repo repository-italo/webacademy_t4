@@ -24,7 +24,7 @@ describe("primeironome(),", () => {
         const result = validacoes.primeiroNome(name);
 
         expect(result).toBe("Antonio");
-    })
+    });
 })
 
 describe("verificarDisponibilidadeEstoque(), ", () => {
@@ -52,7 +52,7 @@ describe("verificarDisponibilidadeEstoque(), ", () => {
 });
 
 describe("calculaPrecoTotal(),", () => {
-    it("deve retornar o produto do preço pela quantidade dos produtos.", () => {
+    it("deve retornar a multiplicação do preço pela quantidade dos produtos.", () => {
         const produtos = [
             {nome: "Celular", preco: 1500, quantidade: 4},
             {nome: "Geladeira", preco: 2000, quantidade: 6},
